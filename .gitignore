@@ -1,0 +1,12 @@
+mapa_images/
+Images/
+image/
+mapa_otros_recorridos/
+mapa_santa_clara/
+mapas_leyendas_ultratumba/
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.zip
+.DS_Store
