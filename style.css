@@ -78,6 +78,42 @@ a {
   text-decoration: none;
 }
 
+/* Íconos SVG de línea (sprite reutilizable) */
+.icon-sprite {
+  display: none;
+}
+.ic {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: -0.15em;
+  flex: none;
+  overflow: visible;
+}
+/* Para íconos que van en línea junto a texto (badges, contacto, tabs) */
+.ic--inline {
+  vertical-align: -0.18em;
+  margin-right: 0.4em;
+}
+/* Íconos decorativos en dorado (los que no heredan un color propio) */
+.nav__brand-icon .ic,
+.tour-card__icon .ic,
+.ruta__panel-icon .ic,
+.servicio-card__icon .ic,
+.tienda-card__icon .ic,
+.evento-card__icon .ic,
+.step__icon .ic,
+.pact-item__icon .ic,
+.footer h3 .ic,
+.footer__final .ic,
+.contact-info__item .ic {
+  color: var(--color-gold-light);
+}
+
 .container {
   width: var(--container);
   margin-inline: auto;
@@ -1024,11 +1060,10 @@ a {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
   background: linear-gradient(165deg, #201d1a, #121117);
   border: 1px solid rgba(212, 175, 55, 0.3);
   border-radius: var(--radius-lg);
-  padding: 1.5rem 1.2rem 1.2rem;
+  overflow: hidden;
   transition: var(--transition);
 }
 .promo-card:hover {
@@ -1036,10 +1071,29 @@ a {
   border-color: rgba(212, 175, 55, 0.7);
   box-shadow: var(--shadow-glow);
 }
+/* Imagen opcional de la promoción */
+.promo-card__img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  filter: grayscale(20%) brightness(0.82);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.28);
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+.promo-card:hover .promo-card__img {
+  transform: scale(1.05);
+  filter: grayscale(0%) brightness(0.92);
+}
+.promo-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.2rem;
+}
 .promo-card__badge {
   align-self: flex-start;
   font-family: "Cinzel Decorative", serif;
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   color: #18120a;
   background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
   border-radius: 999px;
@@ -1056,6 +1110,9 @@ a {
   color: #cfc9bf;
   font-size: 0.92rem;
 }
+.promo-card__text strong {
+  color: var(--color-gold-light);
+}
 .promo-card__valid {
   margin: 0;
   color: var(--color-text-secondary);
@@ -1068,6 +1125,72 @@ a {
   margin-top: 0.6rem;
   align-self: flex-start;
   font-size: 0.82rem;
+}
+
+/* =========================
+   10c-2) SERVICIOS EXTRAS
+   ========================= */
+.servicios {
+  background: linear-gradient(180deg, var(--color-bg-secondary), #0d0d16);
+}
+.servicios__intro {
+  max-width: 720px;
+  color: #d4cec3;
+  margin: 0 0 1.8rem;
+}
+.servicios__grid {
+  display: grid;
+  gap: 0.9rem;
+}
+.servicio-card {
+  display: grid;
+  gap: 0.35rem;
+  background: var(--color-glass);
+  border: 1px solid var(--color-glass-border);
+  border-left: 3px solid rgba(212, 175, 55, 0.55);
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  backdrop-filter: blur(6px);
+  transition: var(--transition);
+}
+.servicio-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(212, 175, 55, 0.6);
+  border-left-color: var(--color-gold);
+  box-shadow: var(--shadow-glow);
+}
+.servicio-card__icon {
+  font-size: 1.9rem;
+  line-height: 1;
+}
+.servicio-card__title {
+  margin: 0.3rem 0 0;
+  font-family: "Playfair Display", serif;
+  font-size: 1.05rem;
+  color: var(--color-gold-light);
+}
+.servicio-card__text {
+  margin: 0;
+  color: #cfc9bf;
+  font-size: 0.88rem;
+}
+.servicios__cta {
+  margin-top: 1.6rem;
+  display: grid;
+  justify-items: center;
+  gap: 0.9rem;
+  text-align: center;
+  padding: 1.6rem 1.2rem;
+  background: linear-gradient(150deg, rgba(139, 0, 0, 0.18), rgba(212, 175, 55, 0.08));
+  border: 1px dashed rgba(212, 175, 55, 0.5);
+  border-radius: var(--radius-lg);
+}
+.servicios__cta-text {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: clamp(1.3rem, 3.2vw, 1.9rem);
+  color: #f0e8da;
 }
 
 /* =========================
@@ -1152,6 +1275,89 @@ a {
 .evento-card:hover .evento-card__img {
   transform: scale(1.07);
   filter: grayscale(0%) brightness(0.82);
+}
+
+/* =========================
+   10d-2) TIENDA
+   ========================= */
+.tienda {
+  background: linear-gradient(180deg, #131320, #0c0c14);
+}
+.tienda__intro {
+  max-width: 720px;
+  color: #d4cec3;
+  margin: 0 0 1rem;
+}
+.tienda__grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+.tienda-card {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(165deg, #201d1a, #121117);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.tienda-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.7);
+  box-shadow: var(--shadow-glow);
+}
+/* Foto del producto */
+.tienda-card__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  filter: grayscale(20%) brightness(0.82);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.28);
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+.tienda-card:hover .tienda-card__img {
+  transform: scale(1.05);
+  filter: grayscale(0%) brightness(0.92);
+}
+.tienda-card__body {
+  display: grid;
+  gap: 0.4rem;
+  justify-items: center;
+  text-align: center;
+  padding: 1.3rem 1.2rem 1.4rem;
+}
+.tienda-card__icon {
+  font-size: 2rem;
+  margin-top: -2.6rem;
+  width: 3.2rem;
+  height: 3.2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(10, 10, 15, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-glow);
+}
+.tienda-card__title {
+  margin: 0.4rem 0 0;
+  font-family: "Cinzel Decorative", serif;
+  font-size: 1.15rem;
+  color: var(--color-gold-light);
+}
+.tienda-card__text {
+  margin: 0;
+  color: #cfc9bf;
+  font-size: 0.9rem;
+}
+.tienda-card__cta {
+  margin-top: 0.5rem;
+  color: var(--color-gold-light);
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 /* =========================
@@ -1683,6 +1889,14 @@ a {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .servicios__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .tienda__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .mapa__viewport {
     height: 70vh;
   }
@@ -1767,6 +1981,10 @@ a {
 
   .tour-card {
     min-height: 420px;
+  }
+
+  .servicios__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

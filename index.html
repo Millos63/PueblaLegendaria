@@ -34,10 +34,52 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- ================= SPRITE DE ÍCONOS (línea fina, se reutilizan con <use>) ================= -->
+    <svg class="icon-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <symbol id="ic-building" viewBox="0 0 24 24"><path d="M3 9 12 4l9 5Z"/><path d="M5 9v9M9.5 9v9M14.5 9v9M19 9v9"/><path d="M3 19h18"/></symbol>
+      <symbol id="ic-candle" viewBox="0 0 24 24"><path d="M12 3c1.6 2 1.6 3.7 0 5-1.6-1.3-1.6-3 0-5Z"/><rect x="9.5" y="9" width="5" height="11" rx="1.2"/><path d="M9.5 20h5"/></symbol>
+      <symbol id="ic-walk" viewBox="0 0 24 24"><circle cx="13" cy="4.4" r="1.8"/><path d="M13 7 11 12l-2.5 5M13 7l3.2 2.6M11 12l3 4.5M13 7l1.5 4"/></symbol>
+      <symbol id="ic-key" viewBox="0 0 24 24"><circle cx="7.5" cy="8" r="3.6"/><path d="M9.8 10.5 19 19.7M15.7 16.4l2-2M13 13.7l2-2"/></symbol>
+      <symbol id="ic-church" viewBox="0 0 24 24"><path d="M12 2v4M10 4h4"/><path d="M6 22V11l6-4 6 4v11Z"/><rect x="10.3" y="15" width="3.4" height="7"/></symbol>
+      <symbol id="ic-moon" viewBox="0 0 24 24"><path d="M20 13a8 8 0 1 1-9-9 6.5 6.5 0 0 0 9 9Z"/></symbol>
+      <symbol id="ic-crown" viewBox="0 0 24 24"><path d="M4 8l3 6h10l3-6-4.5 3.2L12 6 8.5 11.2Z"/><path d="M6.5 17h11"/></symbol>
+      <symbol id="ic-swords" viewBox="0 0 24 24"><path d="M4 4l9.5 9.5M20 4l-9.5 9.5"/><path d="M9 15l3 3 3-3"/><path d="M3 6l2-2M21 6l-2-2"/></symbol>
+      <symbol id="ic-fire" viewBox="0 0 24 24"><path d="M12 3c3 3.5 5 6 4 10a4 4 0 1 1-8 0c0-2 1-2.5 2-1 0-3.5 1-4.5 2-9Z"/></symbol>
+      <symbol id="ic-masks" viewBox="0 0 24 24"><path d="M5 5h14v6a7 7 0 0 1-14 0Z"/><circle cx="9.5" cy="9.2" r=".6"/><circle cx="14.5" cy="9.2" r=".6"/><path d="M9 13c1.8 1.6 4.2 1.6 6 0"/></symbol>
+      <symbol id="ic-ghost" viewBox="0 0 24 24"><path d="M6 20V10a6 6 0 0 1 12 0v10l-2-2-2 2-2-2-2 2-2-2Z"/><circle cx="10" cy="10" r=".8"/><circle cx="14" cy="10" r=".8"/></symbol>
+      <symbol id="ic-skull" viewBox="0 0 24 24"><path d="M5 10a7 7 0 1 1 14 0v3a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3Z"/><circle cx="9" cy="10.5" r="1.6"/><circle cx="15" cy="10.5" r="1.6"/><path d="M12 12.5 11 15h2Z"/><path d="M9 16v3M12 16v3M15 16v3"/></symbol>
+      <symbol id="ic-castle" viewBox="0 0 24 24"><path d="M4 20V9h2V7h2v2h2V7h2v2h2V7h2v2h2v11Z"/><rect x="10.2" y="14" width="3.6" height="6"/></symbol>
+      <symbol id="ic-scroll" viewBox="0 0 24 24"><path d="M7 5h9a2 2 0 0 1 2 2v10a2 2 0 0 0 2 2H8a2 2 0 0 1-2-2V7a2 2 0 0 0-2-2Z"/><path d="M9.5 9h6M9.5 12h6M9.5 15h4"/></symbol>
+      <symbol id="ic-dagger" viewBox="0 0 24 24"><path d="M12 3l2 9h-4Z"/><path d="M8 12h8M12 12v7M10 20h4"/></symbol>
+      <symbol id="ic-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></symbol>
+      <symbol id="ic-family" viewBox="0 0 24 24"><circle cx="7" cy="7" r="2.1"/><circle cx="17" cy="7" r="2.1"/><circle cx="12" cy="9.3" r="1.6"/><path d="M3.6 19v-3a3.4 3.4 0 0 1 6.8 0M13.6 19v-3a3.4 3.4 0 0 1 6.8 0M9.7 19.5v-2.2a2.3 2.3 0 0 1 4.6 0"/></symbol>
+      <symbol id="ic-pumpkin" viewBox="0 0 24 24"><path d="M12 6V4c1.6 0 2 1 2 2"/><ellipse cx="12" cy="13.5" rx="7.5" ry="6.5"/><path d="M9 7.5c-2 1.8-2 10.2 0 12M15 7.5c2 1.8 2 10.2 0 12M12 7v13"/></symbol>
+      <symbol id="ic-flower" viewBox="0 0 24 24"><circle cx="12" cy="7.3" r="2.3"/><circle cx="17" cy="10.8" r="2.3"/><circle cx="15.1" cy="16.4" r="2.3"/><circle cx="8.9" cy="16.4" r="2.3"/><circle cx="7" cy="10.8" r="2.3"/><circle cx="12" cy="12" r="2"/></symbol>
+      <symbol id="ic-calendar" viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="15" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></symbol>
+      <symbol id="ic-dress" viewBox="0 0 24 24"><path d="M9 4h6l-1 4 3 12H7l3-12Z"/><path d="M9 4 7 7M15 4l2 3"/></symbol>
+      <symbol id="ic-toast" viewBox="0 0 24 24"><path d="M5 5l3 6v6M5 5h6l-3 6M5 19h6"/><path d="M19 5l-3 6v6M19 5h-6l3 6M13 19h6"/></symbol>
+      <symbol id="ic-dance" viewBox="0 0 24 24"><circle cx="13" cy="4.2" r="1.7"/><path d="M13 6l-3.5 5M13 6l4.5 2.5M13 6v5M9.5 11 7 19h11l-2.5-8Z"/></symbol>
+      <symbol id="ic-ring" viewBox="0 0 24 24"><circle cx="12" cy="15" r="5"/><path d="M9 8l3-3 3 3-3 2Z"/></symbol>
+      <symbol id="ic-trumpet" viewBox="0 0 24 24"><path d="M3 12h3M6 10h6v4H6zM12 8l6-2v12l-6-2M8 10V8M10 10V8M8 14v2M10 14v2"/></symbol>
+      <symbol id="ic-bride" viewBox="0 0 24 24"><circle cx="12" cy="6" r="3"/><path d="M9.2 6.4C5.5 8 5 12 5 15M14.8 6.4C18.5 8 19 12 19 15M8 21v-4a4 4 0 0 1 8 0v4"/></symbol>
+      <symbol id="ic-bus" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="12" rx="2"/><path d="M4 12h16M8 5v7M12 5v7M16 5v7"/><circle cx="8" cy="18.5" r="1.5"/><circle cx="16" cy="18.5" r="1.5"/></symbol>
+      <symbol id="ic-cap" viewBox="0 0 24 24"><path d="M4 15a8 7 0 0 1 16 0Z"/><path d="M20 15c2.6 0 2.6 3 0 3h-8"/></symbol>
+      <symbol id="ic-shirt" viewBox="0 0 24 24"><path d="M9 4 4 7.2 6 10.6l2.2-1.2V20h7.6V9.4l2.2 1.2L20 7.2 15 4l-3 2Z"/></symbol>
+      <symbol id="ic-gift" viewBox="0 0 24 24"><rect x="4" y="9" width="16" height="11" rx="1"/><path d="M4 13h16M12 9v11"/><path d="M12 9C9 4 6 6.5 12 9 15 4 18 6.5 12 9"/></symbol>
+      <symbol id="ic-phone" viewBox="0 0 24 24"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></symbol>
+      <symbol id="ic-pin" viewBox="0 0 24 24"><path d="M12 22s7-7 7-12a7 7 0 0 0-14 0c0 5 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+      <symbol id="ic-mail" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3.5 7.5 12 13.5 20.5 7.5"/></symbol>
+      <symbol id="ic-chat" viewBox="0 0 24 24"><path d="M5 4h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-8l-4 4v-4H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"/></symbol>
+      <symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></symbol>
+      <symbol id="ic-star" viewBox="0 0 24 24"><path d="M12 3l2.6 6 6.4.5-4.9 4.1 1.5 6.4L12 17l-5.6 3 1.5-6.4L3 9.5 9.4 9Z"/></symbol>
+      <symbol id="ic-flag" viewBox="0 0 24 24"><path d="M6 3v18"/><path d="M6 4h12l-3 3 3 3H6"/></symbol>
+      <symbol id="ic-map" viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2Z"/><path d="M9 4v14M15 6v14"/></symbol>
+    </svg>
+
     <header class="header" id="inicio">
       <div class="container nav">
         <a class="nav__brand" href="#inicio" aria-label="Puebla Legendaria inicio">
-          <span class="nav__brand-icon">🏛️</span>
+          <span class="nav__brand-icon"><svg class="ic"><use href="#ic-building"/></svg></span>
           <span>PUEBLA LEGENDARIA</span>
         </a>
 
@@ -59,6 +101,8 @@
           <a class="nav__link" href="#recorridos">Recorridos</a>
           <a class="nav__link" href="#promociones">Promociones</a>
           <a class="nav__link" href="#eventos">Eventos</a>
+          <a class="nav__link" href="#servicios">Servicios</a>
+          <a class="nav__link" href="#tienda">Tienda</a>
           <a class="nav__link" href="#galeria">Galería</a>
           <a class="nav__link" href="#faq">FAQ</a>
           <a class="nav__link" href="#contacto">Contacto</a>
@@ -177,7 +221,7 @@
                 <img class="ruta__card-img" src="image/tour-leyendas-clasico.webp" alt="" loading="lazy" />
                 <span class="ruta__card-shine" aria-hidden="true"></span>
                 <div class="ruta__card-body">
-                  <span class="ruta__panel-icon">🕯️</span>
+                  <span class="ruta__panel-icon"><svg class="ic"><use href="#ic-candle"/></svg></span>
                   <h3 class="ruta__panel-title">Punto de reunión</h3>
                   <p class="ruta__panel-text">Nos encontramos en el Centro Histórico al caer la noche. Tu guía enciende la primera vela y la aventura comienza.</p>
                 </div>
@@ -186,7 +230,7 @@
                 <img class="ruta__card-img" src="image/tour-callejones-centro.webp" alt="" loading="lazy" />
                 <span class="ruta__card-shine" aria-hidden="true"></span>
                 <div class="ruta__card-body">
-                  <span class="ruta__panel-icon">🚶</span>
+                  <span class="ruta__panel-icon"><svg class="ic"><use href="#ic-walk"/></svg></span>
                   <h3 class="ruta__panel-title">Calles empedradas</h3>
                   <p class="ruta__panel-text">Caminamos juntos por las calles donde inicia la historia. Cada esquina guarda una leyenda esperando ser contada.</p>
                 </div>
@@ -195,7 +239,7 @@
                 <img class="ruta__card-img" src="image/tour-santa-inquisicion.webp" alt="" loading="lazy" />
                 <span class="ruta__card-shine" aria-hidden="true"></span>
                 <div class="ruta__card-body">
-                  <span class="ruta__panel-icon">🗝️</span>
+                  <span class="ruta__panel-icon"><svg class="ic"><use href="#ic-key"/></svg></span>
                   <h3 class="ruta__panel-title">Callejón oscuro</h3>
                   <p class="ruta__panel-text">Entre sombras y velas aparecen los personajes. Aquí la frontera entre el presente y el pasado se desvanece.</p>
                 </div>
@@ -204,7 +248,7 @@
                 <img class="ruta__card-img" src="image/tour-fundacion-cholula.webp" alt="" loading="lazy" />
                 <span class="ruta__card-shine" aria-hidden="true"></span>
                 <div class="ruta__card-body">
-                  <span class="ruta__panel-icon">⛪</span>
+                  <span class="ruta__panel-icon"><svg class="ic"><use href="#ic-church"/></svg></span>
                   <h3 class="ruta__panel-title">Plaza histórica</h3>
                   <p class="ruta__panel-text">La leyenda se revela en un punto emblemático de la ciudad, rodeado de arquitectura colonial y misterio.</p>
                 </div>
@@ -213,7 +257,7 @@
                 <img class="ruta__card-img" src="image/tour-angeles-demonios.webp" alt="" loading="lazy" />
                 <span class="ruta__card-shine" aria-hidden="true"></span>
                 <div class="ruta__card-body">
-                  <span class="ruta__panel-icon">🌙</span>
+                  <span class="ruta__panel-icon"><svg class="ic"><use href="#ic-moon"/></svg></span>
                   <h3 class="ruta__panel-title">Final inolvidable</h3>
                   <p class="ruta__panel-text">Un cierre inmersivo que se queda contigo para siempre. Caminaste por Puebla… y la historia caminó contigo.</p>
                 </div>
@@ -235,9 +279,9 @@
           <p class="promos__note reveal">⚠️ Descripciones de los lugares y posiciones finas de los pines aún por afinar.</p>
 
           <div class="mapa__tabs reveal" role="tablist" aria-label="Selecciona un recorrido">
-            <button class="mapa__tab is-active" role="tab" aria-selected="true" data-recorrido="ultratumba">🕯️ Leyendas de Ultratumba</button>
-            <button class="mapa__tab" role="tab" aria-selected="false" data-recorrido="santa-clara">⛪ Santa Clara</button>
-            <button class="mapa__tab" role="tab" aria-selected="false" data-recorrido="otros">🎭 Otros Recorridos</button>
+            <button class="mapa__tab is-active" role="tab" aria-selected="true" data-recorrido="ultratumba"><svg class="ic ic--inline"><use href="#ic-candle"/></svg>Leyendas de Ultratumba</button>
+            <button class="mapa__tab" role="tab" aria-selected="false" data-recorrido="santa-clara"><svg class="ic ic--inline"><use href="#ic-church"/></svg>Santa Clara</button>
+            <button class="mapa__tab" role="tab" aria-selected="false" data-recorrido="otros"><svg class="ic ic--inline"><use href="#ic-masks"/></svg>Otros Recorridos</button>
           </div>
 
           <div class="mapa__frame reveal">
@@ -275,7 +319,7 @@
         <div class="container">
           <header class="chapter reveal">
             <span class="chapter__mini">— Capítulo II —</span>
-            <h2 class="chapter__title">ELIGE TU DESTINO</h2>
+            <h2 class="chapter__title">NUESTRAS CALLEJONEADAS</h2>
           </header>
 
           <div class="tours__grid">
@@ -283,8 +327,8 @@
               <img class="tour-card__img" src="Images/leyendas_clasico.png" alt="Tour de Leyendas Clásico" loading="lazy" />
               <div class="tour-card__overlay"></div>
               <div class="tour-card__content">
-                <span class="tour-card__badge">🌙 Nocturno</span>
-                <span class="tour-card__icon">🕯️</span>
+                <span class="tour-card__badge"><svg class="ic ic--inline"><use href="#ic-moon"/></svg>Nocturno</span>
+                <span class="tour-card__icon"><svg class="ic"><use href="#ic-candle"/></svg></span>
                 <h3 class="tour-card__title">Tour de Leyendas Clásico</h3>
                 <p class="tour-card__text">Las leyendas más emblemáticas de Puebla cobran vida en el Centro Histórico.</p>
                 <a class="tour-card__cta" href="#contacto">Adentrarse →</a>
@@ -295,8 +339,8 @@
               <img class="tour-card__img" src="image/tour-marquesa-selva-nevada.webp" alt="La Marquesa de la Selva Nevada" loading="lazy" />
               <div class="tour-card__overlay"></div>
               <div class="tour-card__content">
-                <span class="tour-card__badge">☀️ Diurno</span>
-                <span class="tour-card__icon">👑</span>
+                <span class="tour-card__badge"><svg class="ic ic--inline"><use href="#ic-sun"/></svg>Diurno</span>
+                <span class="tour-card__icon"><svg class="ic"><use href="#ic-crown"/></svg></span>
                 <h3 class="tour-card__title">La Marquesa de la Selva Nevada</h3>
                 <p class="tour-card__text">La Marquesa y su séquito harán de tu estancia una experiencia inolvidable.</p>
                 <a class="tour-card__cta" href="#contacto">Adentrarse →</a>
@@ -307,8 +351,8 @@
               <img class="tour-card__img" src="image/tour-fundacion-cholula.webp" alt="Fundación de Cholula" loading="lazy" />
               <div class="tour-card__overlay"></div>
               <div class="tour-card__content">
-                <span class="tour-card__badge">👨‍👩‍👧 Familiar</span>
-                <span class="tour-card__icon">⛪</span>
+                <span class="tour-card__badge"><svg class="ic ic--inline"><use href="#ic-family"/></svg>Familiar</span>
+                <span class="tour-card__icon"><svg class="ic"><use href="#ic-church"/></svg></span>
                 <h3 class="tour-card__title">Fundación de Cholula</h3>
                 <p class="tour-card__text">Un paseo de la época colonial a la actualidad con personajes históricos.</p>
                 <a class="tour-card__cta" href="#contacto">Adentrarse →</a>
@@ -319,8 +363,8 @@
               <img class="tour-card__img" src="image/tour-hermanos-serdan.webp" alt="Los Hermanos Serdán" loading="lazy" />
               <div class="tour-card__overlay"></div>
               <div class="tour-card__content">
-                <span class="tour-card__badge">📜 Histórico</span>
-                <span class="tour-card__icon">⚔️</span>
+                <span class="tour-card__badge"><svg class="ic ic--inline"><use href="#ic-scroll"/></svg>Histórico</span>
+                <span class="tour-card__icon"><svg class="ic"><use href="#ic-swords"/></svg></span>
                 <h3 class="tour-card__title">Los Hermanos Serdán</h3>
                 <p class="tour-card__text">Descubre la verdad detrás del inicio de la Revolución Mexicana en Puebla.</p>
                 <a class="tour-card__cta" href="#contacto">Adentrarse →</a>
@@ -331,8 +375,8 @@
               <img class="tour-card__img" src="image/tour-santa-inquisicion.webp" alt="La Santa Inquisición" loading="lazy" />
               <div class="tour-card__overlay"></div>
               <div class="tour-card__content">
-                <span class="tour-card__badge">🌙 Nocturno</span>
-                <span class="tour-card__icon">🔥</span>
+                <span class="tour-card__badge"><svg class="ic ic--inline"><use href="#ic-moon"/></svg>Nocturno</span>
+                <span class="tour-card__icon"><svg class="ic"><use href="#ic-fire"/></svg></span>
                 <h3 class="tour-card__title">La Santa Inquisición</h3>
                 <p class="tour-card__text">EL INQUISIDOR será tu guía nocturno. Camina con cuidado entre pecados.</p>
                 <a class="tour-card__cta" href="#contacto">Adentrarse →</a>
@@ -343,8 +387,8 @@
               <img class="tour-card__img" src="image/tour-divertido-leyendas.webp" alt="Tour Divertido de Leyendas" loading="lazy" />
               <div class="tour-card__overlay"></div>
               <div class="tour-card__content">
-                <span class="tour-card__badge">👨‍👩‍👧 Familiar</span>
-                <span class="tour-card__icon">🎭</span>
+                <span class="tour-card__badge"><svg class="ic ic--inline"><use href="#ic-family"/></svg>Familiar</span>
+                <span class="tour-card__icon"><svg class="ic"><use href="#ic-masks"/></svg></span>
                 <h3 class="tour-card__title">Tour Divertido de Leyendas</h3>
                 <p class="tour-card__text">Historias locas y divertidas donde tú también serás parte de la leyenda.</p>
                 <a class="tour-card__cta" href="#contacto">Adentrarse →</a>
@@ -355,8 +399,8 @@
               <img class="tour-card__img" src="image/tour-angeles-demonios.webp" alt="Ángeles y Demonios" loading="lazy" />
               <div class="tour-card__overlay"></div>
               <div class="tour-card__content">
-                <span class="tour-card__badge">🌙 Nocturno</span>
-                <span class="tour-card__icon">👻</span>
+                <span class="tour-card__badge"><svg class="ic ic--inline"><use href="#ic-moon"/></svg>Nocturno</span>
+                <span class="tour-card__icon"><svg class="ic"><use href="#ic-ghost"/></svg></span>
                 <h3 class="tour-card__title">Ángeles y Demonios</h3>
                 <p class="tour-card__text">Poseídos y muertos vivientes en historias verdaderas de la Ciudad de los Ángeles.</p>
                 <a class="tour-card__cta" href="#contacto">Adentrarse →</a>
@@ -367,8 +411,8 @@
               <img class="tour-card__img" src="image/tour-batalla-5-mayo.webp" alt="Batalla del 5 de Mayo" loading="lazy" />
               <div class="tour-card__overlay"></div>
               <div class="tour-card__content">
-                <span class="tour-card__badge">📜 Histórico</span>
-                <span class="tour-card__icon">🏛️</span>
+                <span class="tour-card__badge"><svg class="ic ic--inline"><use href="#ic-scroll"/></svg>Histórico</span>
+                <span class="tour-card__icon"><svg class="ic"><use href="#ic-building"/></svg></span>
                 <h3 class="tour-card__title">Batalla del 5 de Mayo</h3>
                 <p class="tour-card__text">Un relato distinto de la batalla más importante de Puebla.</p>
                 <a class="tour-card__cta" href="#contacto">Adentrarse →</a>
@@ -379,8 +423,8 @@
               <img class="tour-card__img" src="image/tour-leyendas-estado.webp" alt="Leyendas del Estado" loading="lazy" />
               <div class="tour-card__overlay"></div>
               <div class="tour-card__content">
-                <span class="tour-card__badge">🌙 Nocturno</span>
-                <span class="tour-card__icon">💀</span>
+                <span class="tour-card__badge"><svg class="ic ic--inline"><use href="#ic-moon"/></svg>Nocturno</span>
+                <span class="tour-card__icon"><svg class="ic"><use href="#ic-skull"/></svg></span>
                 <h3 class="tour-card__title">Leyendas del Estado</h3>
                 <p class="tour-card__text">La Parca guía las leyendas más oscuras de distintos municipios poblanos.</p>
                 <a class="tour-card__cta" href="#contacto">Adentrarse →</a>
@@ -391,8 +435,8 @@
               <img class="tour-card__img" src="image/tour-ex-hacienda-chautla.webp" alt="Ex Hacienda de Chautla" loading="lazy" />
               <div class="tour-card__overlay"></div>
               <div class="tour-card__content">
-                <span class="tour-card__badge">👨‍👩‍👧 Familiar</span>
-                <span class="tour-card__icon">🏰</span>
+                <span class="tour-card__badge"><svg class="ic ic--inline"><use href="#ic-family"/></svg>Familiar</span>
+                <span class="tour-card__icon"><svg class="ic"><use href="#ic-castle"/></svg></span>
                 <h3 class="tour-card__title">Ex Hacienda de Chautla</h3>
                 <p class="tour-card__text">Fogata, búsqueda del tesoro y sorpresas en un entorno histórico inolvidable.</p>
                 <a class="tour-card__cta" href="#contacto">Adentrarse →</a>
@@ -403,8 +447,8 @@
               <img class="tour-card__img" src="image/tour-verdadera-fundacion.webp" alt="La Verdadera Fundación" loading="lazy" />
               <div class="tour-card__overlay"></div>
               <div class="tour-card__content">
-                <span class="tour-card__badge">📜 Histórico</span>
-                <span class="tour-card__icon">📜</span>
+                <span class="tour-card__badge"><svg class="ic ic--inline"><use href="#ic-scroll"/></svg>Histórico</span>
+                <span class="tour-card__icon"><svg class="ic"><use href="#ic-scroll"/></svg></span>
                 <h3 class="tour-card__title">La Verdadera Fundación</h3>
                 <p class="tour-card__text">Fray Toribio revela dónde nació realmente Puebla. La historia oficial te sorprenderá.</p>
                 <a class="tour-card__cta" href="#contacto">Adentrarse →</a>
@@ -415,8 +459,8 @@
               <img class="tour-card__img" src="image/tour-callejones-centro.webp" alt="Callejones del Centro" loading="lazy" />
               <div class="tour-card__overlay"></div>
               <div class="tour-card__content">
-                <span class="tour-card__badge">🌙 Nocturno</span>
-                <span class="tour-card__icon">🗡️</span>
+                <span class="tour-card__badge"><svg class="ic ic--inline"><use href="#ic-moon"/></svg>Nocturno</span>
+                <span class="tour-card__icon"><svg class="ic"><use href="#ic-dagger"/></svg></span>
                 <h3 class="tour-card__title">Callejones del Centro</h3>
                 <p class="tour-card__text">Una bella dama te guía por callejones oscuros llenos de personajes históricos.</p>
                 <a class="tour-card__cta" href="#contacto">Adentrarse →</a>
@@ -430,31 +474,40 @@
         <div class="container">
           <span class="section__kicker reveal">Ofertas vivas</span>
           <h2 class="section__title reveal">Promociones</h2>
-          <p class="promos__note reveal">⚠️ Contenido de ejemplo — esta información se actualizará desde el manejador del sitio.</p>
+          <p class="promos__note reveal">⚠️ Las fotos son provisionales — reemplázalas por imágenes propias de cada promoción.</p>
 
           <div class="promos__grid">
             <article class="promo-card reveal">
-              <span class="promo-card__badge">2x1</span>
-              <h3 class="promo-card__title">Martes de Leyendas</h3>
-              <p class="promo-card__text">Lleva a un acompañante sin costo en cualquier recorrido nocturno los días martes.</p>
-              <p class="promo-card__valid">Vigencia: por definir</p>
-              <a class="btn btn--gold btn--shine promo-card__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+              <img class="promo-card__img" src="image/tour-fundacion-cholula.webp" alt="Día de las Madres" loading="lazy" />
+              <div class="promo-card__body">
+                <span class="promo-card__badge">Mamá gratis</span>
+                <h3 class="promo-card__title">Día de las Madres</h3>
+                <p class="promo-card__text">Mamá entra <strong>gratis</strong> acompañada de su hijo, con boleto pagado.</p>
+                <p class="promo-card__valid">10 de mayo</p>
+                <a class="btn btn--gold btn--shine promo-card__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+              </div>
             </article>
 
             <article class="promo-card reveal">
-              <span class="promo-card__badge">−20%</span>
-              <h3 class="promo-card__title">Paquete Familiar</h3>
-              <p class="promo-card__text">Descuento especial para grupos familiares de 4 personas o más en recorridos diurnos.</p>
-              <p class="promo-card__valid">Vigencia: por definir</p>
-              <a class="btn btn--gold btn--shine promo-card__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+              <img class="promo-card__img" src="image/tour-ex-hacienda-chautla.webp" alt="Día del Padre" loading="lazy" />
+              <div class="promo-card__body">
+                <span class="promo-card__badge">Papá gratis</span>
+                <h3 class="promo-card__title">Día del Padre</h3>
+                <p class="promo-card__text">Papá entra <strong>gratis</strong> acompañado de un hijo que pague su boleto.</p>
+                <p class="promo-card__valid">Tercer domingo de junio</p>
+                <a class="btn btn--gold btn--shine promo-card__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+              </div>
             </article>
 
             <article class="promo-card reveal">
-              <span class="promo-card__badge">Preventa</span>
-              <h3 class="promo-card__title">Temporada Especial</h3>
-              <p class="promo-card__text">Aparta tu lugar con anticipación para los recorridos de temporada y asegura precio preferente.</p>
-              <p class="promo-card__valid">Vigencia: por definir</p>
-              <a class="btn btn--gold btn--shine promo-card__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+              <img class="promo-card__img" src="image/tour-divertido-leyendas.webp" alt="Niños menores de 7 años" loading="lazy" />
+              <div class="promo-card__body">
+                <span class="promo-card__badge">Niños gratis</span>
+                <h3 class="promo-card__title">Menores de 7 años</h3>
+                <p class="promo-card__text">Los niños menores de 7 años entran <strong>gratis</strong> a nuestros recorridos.</p>
+                <p class="promo-card__valid">Todo el año</p>
+                <a class="btn btn--gold btn--shine promo-card__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+              </div>
             </article>
           </div>
         </div>
@@ -471,8 +524,8 @@
               <img class="evento-card__img" src="image/tour-santa-inquisicion.webp" alt="Especial de Halloween" loading="lazy" />
               <div class="evento-card__overlay"></div>
               <div class="evento-card__content">
-                <span class="evento-card__date">🎃 31 Oct</span>
-                <span class="evento-card__icon">👻</span>
+                <span class="evento-card__date"><svg class="ic ic--inline"><use href="#ic-pumpkin"/></svg>31 Oct</span>
+                <span class="evento-card__icon"><svg class="ic"><use href="#ic-ghost"/></svg></span>
                 <h3 class="evento-card__title">Especial de Halloween</h3>
                 <p class="evento-card__text">Una noche de terror actuado por las calles más oscuras del Centro Histórico.</p>
                 <a class="evento-card__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Más información →</a>
@@ -483,8 +536,8 @@
               <img class="evento-card__img" src="image/tour-leyendas-estado.webp" alt="Ruta de Día de Muertos" loading="lazy" />
               <div class="evento-card__overlay"></div>
               <div class="evento-card__content">
-                <span class="evento-card__date">💀 1-2 Nov</span>
-                <span class="evento-card__icon">🌺</span>
+                <span class="evento-card__date"><svg class="ic ic--inline"><use href="#ic-skull"/></svg>1-2 Nov</span>
+                <span class="evento-card__icon"><svg class="ic"><use href="#ic-flower"/></svg></span>
                 <h3 class="evento-card__title">Ruta de Día de Muertos</h3>
                 <p class="evento-card__text">La Parca te guía entre ofrendas, leyendas y tradiciones poblanas en una experiencia única.</p>
                 <a class="evento-card__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Más información →</a>
@@ -495,14 +548,86 @@
               <img class="evento-card__img" src="image/tour-angeles-demonios.webp" alt="Eventos privados" loading="lazy" />
               <div class="evento-card__overlay"></div>
               <div class="evento-card__content">
-                <span class="evento-card__date">🗓️ Todo el año</span>
-                <span class="evento-card__icon">🎭</span>
+                <span class="evento-card__date"><svg class="ic ic--inline"><use href="#ic-calendar"/></svg>Todo el año</span>
+                <span class="evento-card__icon"><svg class="ic"><use href="#ic-masks"/></svg></span>
                 <h3 class="evento-card__title">Eventos Privados</h3>
                 <p class="evento-card__text">Recorridos exclusivos para empresas, escuelas y grupos cerrados con fecha a tu medida.</p>
                 <a class="evento-card__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Más información →</a>
               </div>
             </article>
           </div>
+        </div>
+      </section>
+
+      <section class="section servicios" id="servicios" aria-label="Servicios extras">
+        <div class="container">
+          <span class="section__kicker reveal">Más allá de la callejoneada</span>
+          <h2 class="section__title reveal">Servicios Extras</h2>
+          <p class="servicios__intro reveal">
+            Además de nuestros recorridos, damos vida a todo tipo de eventos con personajes,
+            vestuario y tradición poblana.
+          </p>
+
+          <div class="servicios__grid">
+            <article class="servicio-card reveal">
+              <span class="servicio-card__icon"><svg class="ic"><use href="#ic-dress"/></svg></span>
+              <h3 class="servicio-card__title">Venta y renta de vestuario</h3>
+              <p class="servicio-card__text">Trajes de época y personajes listos para tu evento o producción.</p>
+            </article>
+
+            <article class="servicio-card reveal">
+              <span class="servicio-card__icon"><svg class="ic"><use href="#ic-toast"/></svg></span>
+              <h3 class="servicio-card__title">Eventos privados</h3>
+              <p class="servicio-card__text">Recorridos y experiencias exclusivas para tu grupo, empresa o escuela.</p>
+            </article>
+
+            <article class="servicio-card reveal">
+              <span class="servicio-card__icon"><svg class="ic"><use href="#ic-dance"/></svg></span>
+              <h3 class="servicio-card__title">Edecanes y chinas poblanas</h3>
+              <p class="servicio-card__text">Personal caracterizado para recibir y acompañar a tus invitados.</p>
+            </article>
+
+            <article class="servicio-card reveal">
+              <span class="servicio-card__icon"><svg class="ic"><use href="#ic-masks"/></svg></span>
+              <h3 class="servicio-card__title">Caracterizaciones y fiestas temáticas</h3>
+              <p class="servicio-card__text">Ambientamos tu fiesta con personajes y la época que elijas.</p>
+            </article>
+
+            <article class="servicio-card reveal">
+              <span class="servicio-card__icon"><svg class="ic"><use href="#ic-ring"/></svg></span>
+              <h3 class="servicio-card__title">Pedida de mano</h3>
+              <p class="servicio-card__text">Convierte tu propuesta en una leyenda que nadie olvidará.</p>
+            </article>
+
+            <article class="servicio-card reveal">
+              <span class="servicio-card__icon"><svg class="ic"><use href="#ic-scroll"/></svg></span>
+              <h3 class="servicio-card__title">Recorridos con guías certificados</h3>
+              <p class="servicio-card__text">Recorridos culturales guiados por profesionales certificados.</p>
+            </article>
+
+            <article class="servicio-card reveal">
+              <span class="servicio-card__icon"><svg class="ic"><use href="#ic-trumpet"/></svg></span>
+              <h3 class="servicio-card__title">Pasacalles con música</h3>
+              <p class="servicio-card__text">Música en vivo y color recorriendo las calles con tu celebración.</p>
+            </article>
+
+            <article class="servicio-card reveal">
+              <span class="servicio-card__icon"><svg class="ic"><use href="#ic-bride"/></svg></span>
+              <h3 class="servicio-card__title">Mojigangas para boda</h3>
+              <p class="servicio-card__text">Los gigantes tradicionales que hacen inolvidable tu boda.</p>
+            </article>
+
+            <article class="servicio-card reveal">
+              <span class="servicio-card__icon"><svg class="ic"><use href="#ic-bus"/></svg></span>
+              <h3 class="servicio-card__title">Servicio en Turibus</h3>
+              <p class="servicio-card__text">Lleva la experiencia legendaria a bordo del Turibus.</p>
+            </article>
+          </div>
+
+          <aside class="servicios__cta reveal">
+            <p class="servicios__cta-text">Cuéntanos tu idea, nosotros la hacemos realidad.</p>
+            <a class="btn btn--gold btn--shine" href="https://wa.me/522222650024" target="_blank" rel="noopener">Cuéntanos tu idea</a>
+          </aside>
         </div>
       </section>
 
@@ -513,17 +638,17 @@
 
           <div class="timeline">
             <article class="step reveal">
-              <div class="step__icon">📞</div>
+              <div class="step__icon"><svg class="ic"><use href="#ic-phone"/></svg></div>
               <h3 class="step__title">Reserva</h3>
               <p>Elige recorrido, fecha y reúne a tu grupo.</p>
             </article>
             <article class="step reveal">
-              <div class="step__icon">🎭</div>
+              <div class="step__icon"><svg class="ic"><use href="#ic-masks"/></svg></div>
               <h3 class="step__title">Vive la Leyenda</h3>
               <p>Actores profesionales te llevan por historias vivas.</p>
             </article>
             <article class="step reveal">
-              <div class="step__icon">💀</div>
+              <div class="step__icon"><svg class="ic"><use href="#ic-skull"/></svg></div>
               <h3 class="step__title">Nunca Olvidarás</h3>
               <p>Una noche inmersiva que se queda contigo para siempre.</p>
             </article>
@@ -537,12 +662,12 @@
           <h2 class="section__title reveal">¿Por qué elegir Puebla Legendaria?</h2>
 
           <div class="pact__grid">
-            <article class="pact-item reveal"><span class="pact-item__icon">🎭</span><span>Actores Poblanos Profesionales</span></article>
-            <article class="pact-item reveal"><span class="pact-item__icon">📜</span><span>Guías Certificados</span></article>
-            <article class="pact-item reveal"><span class="pact-item__icon">🕰️</span><span>+20 Años de Experiencia</span></article>
-            <article class="pact-item reveal"><span class="pact-item__icon">🗺️</span><span>16+ Recorridos Únicos</span></article>
-            <article class="pact-item reveal"><span class="pact-item__icon">⭐</span><span>98% de Recomendación</span></article>
-            <article class="pact-item reveal"><span class="pact-item__icon">🇲🇽</span><span>Empresa 100% Poblana e Independiente</span></article>
+            <article class="pact-item reveal"><span class="pact-item__icon"><svg class="ic"><use href="#ic-masks"/></svg></span><span>Actores Poblanos Profesionales</span></article>
+            <article class="pact-item reveal"><span class="pact-item__icon"><svg class="ic"><use href="#ic-scroll"/></svg></span><span>Guías Certificados</span></article>
+            <article class="pact-item reveal"><span class="pact-item__icon"><svg class="ic"><use href="#ic-clock"/></svg></span><span>+20 Años de Experiencia</span></article>
+            <article class="pact-item reveal"><span class="pact-item__icon"><svg class="ic"><use href="#ic-map"/></svg></span><span>16+ Recorridos Únicos</span></article>
+            <article class="pact-item reveal"><span class="pact-item__icon"><svg class="ic"><use href="#ic-star"/></svg></span><span>98% de Recomendación</span></article>
+            <article class="pact-item reveal"><span class="pact-item__icon"><svg class="ic"><use href="#ic-flag"/></svg></span><span>Empresa 100% Poblana e Independiente</span></article>
           </div>
         </div>
       </section>
@@ -672,6 +797,49 @@
         </div>
       </section>
 
+      <section class="section tienda noise" id="tienda" aria-label="Tienda">
+        <div class="container">
+          <span class="section__kicker reveal">Llévate la leyenda</span>
+          <h2 class="section__title reveal">Tienda</h2>
+          <p class="tienda__intro reveal">
+            Recuerdos de Puebla Legendaria para que la noche te acompañe a donde vayas.
+          </p>
+          <p class="promos__note reveal">⚠️ Productos y fotos de ejemplo — pendiente definir catálogo, precios e imágenes reales.</p>
+
+          <div class="tienda__grid">
+            <article class="tienda-card reveal">
+              <img class="tienda-card__img" src="image/tour-leyendas-clasico.webp" alt="Gorras" loading="lazy" />
+              <div class="tienda-card__body">
+                <span class="tienda-card__icon"><svg class="ic"><use href="#ic-cap"/></svg></span>
+                <h3 class="tienda-card__title">Gorras</h3>
+                <p class="tienda-card__text">Gorras bordadas con la marca Puebla Legendaria.</p>
+                <a class="tienda-card__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Pedir por WhatsApp →</a>
+              </div>
+            </article>
+
+            <article class="tienda-card reveal">
+              <img class="tienda-card__img" src="image/tour-divertido-leyendas.webp" alt="Playeras" loading="lazy" />
+              <div class="tienda-card__body">
+                <span class="tienda-card__icon"><svg class="ic"><use href="#ic-shirt"/></svg></span>
+                <h3 class="tienda-card__title">Playeras</h3>
+                <p class="tienda-card__text">Playeras con diseños de nuestras leyendas y personajes.</p>
+                <a class="tienda-card__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Pedir por WhatsApp →</a>
+              </div>
+            </article>
+
+            <article class="tienda-card reveal">
+              <img class="tienda-card__img" src="image/tour-marquesa-selva-nevada.webp" alt="Accesorios" loading="lazy" />
+              <div class="tienda-card__body">
+                <span class="tienda-card__icon"><svg class="ic"><use href="#ic-gift"/></svg></span>
+                <h3 class="tienda-card__title">Accesorios</h3>
+                <p class="tienda-card__text">Llaveros, recuerdos y detalles inspirados en Puebla.</p>
+                <a class="tienda-card__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Pedir por WhatsApp →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section class="section contact noise" id="contacto" aria-label="Contacto y reservaciones">
         <div class="container">
           <span class="section__kicker reveal">Invoca tu reservación</span>
@@ -727,11 +895,11 @@
             </article>
 
             <aside class="contact-info reveal" aria-label="Datos de contacto">
-              <p class="contact-info__item">📍 3 Poniente No. 305, Int. 202, Centro, Puebla, Pue. 72000</p>
-              <p class="contact-info__item">📞 <a href="tel:+522222650024">+52 222 265 0024</a></p>
-              <p class="contact-info__item">✉️ <a href="mailto:pueblalegendaria@hotmail.com">pueblalegendaria@hotmail.com</a></p>
-              <p class="contact-info__item">💬 <a href="https://wa.me/522222650024" target="_blank" rel="noopener">WhatsApp directo</a></p>
-              <p class="contact-info__item">🕰️ Siempre abiertos por reservación</p>
+              <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-pin"/></svg>3 Poniente No. 305, Int. 202, Centro, Puebla, Pue. 72000</p>
+              <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-phone"/></svg><a href="tel:+522222650024">+52 222 265 0024</a></p>
+              <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-mail"/></svg><a href="mailto:pueblalegendaria@hotmail.com">pueblalegendaria@hotmail.com</a></p>
+              <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-chat"/></svg><a href="https://wa.me/522222650024" target="_blank" rel="noopener">WhatsApp directo</a></p>
+              <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-clock"/></svg>Siempre abiertos por reservación</p>
 
               <iframe
                 title="Mapa Puebla Legendaria"
@@ -749,7 +917,7 @@
     <footer class="footer" aria-label="Pie de página">
       <div class="container footer__grid">
         <section>
-          <h3>🏛️ Puebla Legendaria</h3>
+          <h3><svg class="ic ic--inline"><use href="#ic-building"/></svg>Puebla Legendaria</h3>
           <p>Turismo cultural actuado con identidad poblana. Misterio, historia y emoción en cada recorrido.</p>
           <p><strong>Desde 2002</strong></p>
         </section>
@@ -762,6 +930,8 @@
             <li><a href="#recorridos">Recorridos</a></li>
             <li><a href="#promociones">Promociones</a></li>
             <li><a href="#eventos">Eventos de temporada</a></li>
+            <li><a href="#servicios">Servicios Extras</a></li>
+            <li><a href="#tienda">Tienda</a></li>
             <li><a href="#faq">Preguntas frecuentes</a></li>
             <li><a href="#galeria">Galería</a></li>
             <li><a href="#contacto">Contacto</a></li>
@@ -790,7 +960,7 @@
       <div class="container">
         <div class="footer__line"></div>
         <p class="footer__copy">© 2025 Puebla Legendaria — Las leyendas nunca mueren.</p>
-        <p class="footer__final">Nos vemos en las calles de Puebla... cuando caiga la noche 🕯️</p>
+        <p class="footer__final">Nos vemos en las calles de Puebla... cuando caiga la noche <svg class="ic ic--inline"><use href="#ic-candle"/></svg></p>
       </div>
     </footer>
 
@@ -813,7 +983,7 @@
       rel="noopener"
       aria-label="Contactar por WhatsApp"
       title="WhatsApp"
-    >💬</a>
+    ><svg class="ic"><use href="#ic-chat"/></svg></a>
 
     <script>
       const header = document.querySelector(".header");
