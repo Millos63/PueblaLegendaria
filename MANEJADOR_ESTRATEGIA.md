@@ -2,14 +2,28 @@
 
 ## Contexto
 
-El sitio es estático (`index.html` + `style.css` + JS vanilla, hoy en Netlify). El cliente necesita **editar contenido sin tocar código**. En esta primera etapa el alcance es acotado a las 3 secciones que cambian más seguido: **Promociones, Eventos de temporada y Tienda**. El resto del sitio se queda fijo (se podrá volver editable después, reusando el mismo patrón).
+Estamos construyendo un **sitio nuevo hecho a mano** (HTML/CSS/JS propio) para reemplazar el sitio actual del cliente, que hoy corre en **WordPress alojado en Neubox** (`pueblalegendaria.com`). El cliente necesita **editar contenido sin tocar código**.
+
+En esta primera etapa el alcance es acotado a las 3 secciones que cambian más seguido: **Promociones, Eventos de temporada y Tienda** (+ formulario de contacto funcional). El resto del sitio se queda fijo (se podrá volver editable después, reusando el mismo patrón).
 
 **Decisiones confirmadas con el cliente:**
-- **Arquitectura:** Laravel + **Blade** (el HTML actual se convierte en plantilla Blade; CSS y JS quedan idénticos → la página se ve **exactamente igual**). Panel de administración con **Filament**.
-- **Alcance fase 1:** Promociones · Eventos de temporada · Tienda.
-- **Hosting:** compartido con PHP + MySQL (cPanel). Esto implica que **el sitio se muda de Netlify a cPanel** (el dominio apunta al Laravel; Netlify puede quedar como respaldo).
+- **Arquitectura:** **Laravel 12 (PHP 8.2)** + **Blade**. El HTML actual se convierte en plantilla Blade; CSS y JS quedan idénticos → la página se ve **exactamente igual**. Panel con **Filament**.
+- **Alcance fase 1:** Promociones · Eventos de temporada · Tienda · **Formulario de contacto funcional** ✅.
+- **Vigencias automáticas** (promos/eventos que se muestran y ocultan solos por fecha) ✅.
+- **Hosting:** **Neubox** (cPanel). PHP disponible **hasta 8.2** → compatible ✅. El sitio nuevo convive con el WordPress hasta el cambio final.
 
-**Objetivo:** que el dueño entre a `/admin`, inicie sesión, y pueda **crear/editar/activar/desactivar** promociones, eventos y productos —con su imagen— y que se reflejen en el sitio de inmediato.
+> **📁 IMPORTANTE — carpetas separadas:**
+> - Sitio actual (NO se toca, queda de respaldo): `~/Documents/Work/PueblaLegendariaArchivos/PueblaLegendaria`
+> - Proyecto nuevo Laravel: `~/Herd/puebla-legendaria` (servido por Herd en `puebla-legendaria.test`)
+
+---
+
+## Registro de avance
+
+- [x] **Paso 1 — Proyecto Laravel + migración del sitio** (verificado: HTML idéntico byte a byte)
+- [x] **Paso 2 — Base de datos + 3 secciones dinámicas** (verificado: promos/eventos/tienda desde la BD, se ven idénticos)
+- [x] **Paso 3 — Panel Filament + formulario de contacto** (verificado local; falta solo el SMTP real, que va al desplegar)
+- [ ] **Paso 4 — Despliegue a Neubox (subdominio) + respaldos + cambio final**
 
 ---
 
@@ -30,70 +44,93 @@ El sitio es estático (`index.html` + `style.css` + JS vanilla, hoy en Netlify).
 
 ---
 
-## Modelo de datos (3 tablas, muy simples)
+## Modelo de datos (3 tablas)
 
-Campos comunes: `activo` (bool, para mostrar/ocultar sin borrar), `orden` (int, para acomodar), `timestamps`.
+Campos comunes: `activo` (bool), `orden` (int), `timestamps`.
 
-- **`promociones`**: `badge` (ej. "Mamá gratis"), `titulo`, `texto`, `vigencia`, `imagen`, `cta_url` (WhatsApp).
-- **`eventos`**: `fecha_badge` (ej. "31 Oct"), `icono` (clave del sprite, p. ej. `ic-ghost`), `titulo`, `texto`, `imagen`, `cta_url`.
-- **`productos`** (Tienda): `icono` (clave del sprite), `titulo`, `texto`, `imagen`, `cta_url`.
+- **`promociones`**: `imagen`, `badge`, `titulo`, `texto`, `vigencia_texto`, `cta_url`, `fecha_inicio`, `fecha_fin`.
+- **`eventos`**: `imagen`, `fecha_icono` (sprite), `fecha_texto`, `icono` (sprite), `titulo`, `texto`, `cta_url`, `fecha_inicio`, `fecha_fin`.
+- **`productos`** (Tienda): `imagen`, `icono` (sprite), `titulo`, `texto`, `cta_url`.
 
-El campo `icono` se edita con un **desplegable** de los íconos que ya existen en el sprite SVG (no texto libre), para que el dueño elija sin equivocarse.
+- El campo de ícono se edita con un **desplegable** de los íconos del sprite SVG (no texto libre).
+- **Vigencias automáticas:** con `fecha_inicio`/`fecha_fin` el sitio muestra/oculta solo, además del `activo` manual.
 
 ---
 
 ## Manejo de imágenes (importante en cPanel)
+- **FileUpload de Filament** con **redimensionado/optimización** al subir (máx ~1000 px, calidad ~80).
+- Disco propio a **`public/uploads/`**, evitando el symlink `storage:link`.
+- Imagen por defecto si un registro no tiene foto.
 
-- Subida con el campo **FileUpload de Filament**, con **redimensionado/optimización al subir** (máx ~1000 px, calidad ~80) para no subir archivos pesados.
-- Se guardan en **`public/uploads/`** (disco público directo), **evitando el symlink `storage:link`** que a veces está bloqueado en hosting compartido.
-- Si una promo/evento/producto no tiene imagen, se usa una genérica por defecto (como ahora).
+## Autenticación y recuperación de acceso
+- Un usuario admin (el dueño), contraseña fuerte. **SMTP de Neubox** para "olvidé mi contraseña".
+- Comando de rescate por consola documentado. Login protegido en `/admin`.
+
+## Respaldos / Backups
+- Respaldar **base de datos + `public/uploads`** (el código va en Git).
+- **Backups de cPanel de Neubox** + (recomendado) `spatie/laravel-backup` con respaldo diario; si no hay cron, respaldo manual documentado.
+- Respaldo manual antes de cada cambio importante en producción.
+
+## Seguridad y producción
+- **SSL/HTTPS** de Neubox forzado; `APP_URL=https://...`.
+- `.env` producción: `APP_ENV=production`, `APP_DEBUG=false`, `APP_KEY`, credenciales MySQL.
+- `config:cache` / `route:cache` / `view:cache`; permisos escribibles; **panel en español**.
 
 ---
 
 ## Plan de ejecución por pasos
 
-### Paso 1 — Crear el proyecto Laravel y migrar el sitio (sin cambiar el diseño)
-1. `laravel new` (Laravel 11, PHP 8.2+).
-2. Mover el sitio actual al proyecto: `index.html` → `resources/views/home.blade.php`; `style.css`, carpeta `image/` y assets → `public/`.
-3. Ruta `/` que devuelve la vista `home`.
-4. **Verificación crítica:** la página debe verse **idéntica** a la actual (comparar capturas antes/después). Aún sin base de datos.
+### Paso 1 — Crear el proyecto Laravel y migrar el sitio ✅
+- [x] Proyecto **Laravel 12** en `~/Herd/puebla-legendaria` (separado del actual).
+- [x] `index.html` → `home.blade.php`; `style.css`, `image/`, `Images/` → `public/`.
+- [x] Ruta `/` → vista `home`.
+- [x] **Verificado:** HTML idéntico byte a byte (0 cambios de diseño).
 
-### Paso 2 — Base de datos y contenido inicial
-1. Migraciones de las 3 tablas + modelos Eloquent (`Promocion`, `Evento`, `Producto`).
-2. **Seeders** con el contenido actual (las 3 promos reales, los 3 eventos, los 3 productos) para no perder nada.
-3. En `home.blade.php`, convertir esas 3 secciones a `@foreach` que recorren la base de datos (el HTML de la tarjeta es el mismo, solo cambian los valores por `{{ $item->campo }}`).
+### Paso 2 — Base de datos y contenido inicial  ✅
+- [x] Migraciones de las 3 tablas (`promociones`, `eventos`, `productos`) con `fecha_inicio`/`fecha_fin` + modelos con scope `vigentes()`.
+- [x] **Seeder** `ContenidoInicialSeeder` con el contenido actual (3 promos, 3 eventos, 3 productos).
+- [x] Las 3 secciones del Blade convertidas a `@foreach` (mismo HTML, valores desde la BD) + filtro de vigencia por fecha.
+- [x] Verificado: las 3 secciones se generan desde la BD y se ven idénticas (único cambio menor: el texto de promociones ya no lleva "gratis" en negrita, por ser texto editable).
 
-### Paso 3 — Panel de administración (Filament)
-1. Instalar Filament; crear usuario administrador (el dueño).
-2. Un **Resource por tabla** (Promociones, Eventos, Tienda) con: campos de texto, `FileUpload` de imagen (con redimensionado), selector de ícono, interruptor `activo` y orden arrastrable.
-3. Login protegido en `/admin`; el resto del panel sin acceso público.
+### Paso 3 — Panel de administración (Filament) + correo + contacto  (EN PROGRESO)
+- [x] Filament instalado; panel en `/admin`; **panel en español**; usuario temporal creado.
+- [x] Un **Resource por tabla** (Promociones, Eventos, Tienda) con `FileUpload` (a `public/uploads`, redimensionado), selector de ícono, fechas de vigencia, `activo`, **orden arrastrable** y validaciones. Verificado: login + lista + formulario de edición.
+- [ ] Configurar **SMTP de Neubox** (recuperar contraseña + contacto) — al desplegar.
+- [x] **Formulario de contacto funcional:** guarda la solicitud en la BD **y** envía aviso por correo (Reply-To al visitante); muestra mensaje de éxito; bandeja en el panel con contador de no leídas. Verificado local (correo al log; en Neubox saldrá por SMTP).
 
-### Paso 4 — Despliegue a cPanel + entrega
-1. Confirmar con el hosting: **PHP 8.2+**, **MySQL**, y acceso (SSH/Composer o subida por archivos).
-2. Apuntar el document root del dominio a la carpeta `public/` del proyecto (o el ajuste equivalente en cPanel).
-3. Crear la base de datos MySQL, configurar `.env`, correr migraciones y seeders.
-4. Crear la cuenta del dueño y entregar una **mini-guía** (1 página) de cómo editar cada sección.
-5. Cambiar el DNS del dominio de Netlify a cPanel cuando todo esté verificado (Netlify queda de respaldo).
+> **Acceso al panel (local, Herd):** `http://puebla-legendaria.test/admin`
+> Usuario temporal: `admin@pueblalegendaria.com` · Contraseña: _(guardada aparte, fuera del repo — no se documenta aquí por seguridad)_.
+
+### Paso 4 — Despliegue a Neubox + cambio seguro
+- [ ] Confirmar cPanel: **PHP 8.2** ✅, **MySQL**, y si hay **SSH/Composer/Terminal** (si no, plan por FTP).
+- [ ] Desplegar primero en **subdominio de prueba** `nuevo.pueblalegendaria.com` (document root → `public/`), **sin tocar el WordPress**.
+- [ ] Si NO hay SSH: subir por **FTP** con `vendor/` incluido; correr migraciones por Terminal de cPanel, MySQL remota, o ruta de instalación temporal.
+- [ ] Crear BD MySQL, `.env` de producción, migraciones + seeders, cachés, SSL.
+- [ ] **Activar respaldos** (cPanel y/o `laravel-backup`).
+- [ ] Probar todo en el subdominio; entregar **mini-guía** (1 pág.).
+- [ ] **Cambio final:** apuntar `pueblalegendaria.com` al Laravel (WordPress queda de respaldo).
 
 ---
 
 ## Verificación
-
-1. **Local (Herd):** el sitio se ve idéntico al actual; en `/admin` inicio sesión, creo una promoción de prueba con imagen y aparece en el sitio; la desactivo y desaparece; reordeno y cambia el orden.
-2. **Imágenes:** subir una foto grande y confirmar que se guarda optimizada en `public/uploads` y se ve bien.
-3. **Comparación visual:** capturas antes/después de las 3 secciones para confirmar 0 cambios de diseño.
-4. **Producción (cPanel):** repetir la prueba de editar una promo y verla reflejada en el dominio real; revisar en móvil y escritorio.
+1. **Local (Herd):** sitio idéntico; en `/admin` creo una promo con imagen y aparece; la desactivo y desaparece; reordeno y cambia el orden.
+2. **Vigencias:** promo con `fecha_fin` pasada no se muestra; con fechas vigentes sí.
+3. **Imágenes:** subir una foto grande y confirmar que se guarda optimizada en `public/uploads`.
+4. **Contraseña:** probar "olvidé mi contraseña" (SMTP) y el restablecimiento por consola.
+5. **Contacto:** enviar el formulario y confirmar que llega el correo.
+6. **Respaldos:** generar un respaldo y **probar una restauración** en local.
+7. **Comparación visual:** capturas antes/después de las 3 secciones → 0 cambios de diseño.
+8. **Producción (subdominio):** editar una promo y verla reflejada; revisar móvil, escritorio y **HTTPS**.
 
 ---
 
-## Riesgos / cosas a confirmar con el hosting (cPanel)
-- **Versión de PHP** ≥ 8.2 (necesario para Laravel 11/Filament).
-- **Composer y consola (SSH):** si no hay, se sube el proyecto ya “compilado” (con `vendor/`) y se corren migraciones vía SSH o un comando puntual.
-- **Document root al `public/`**: si el hosting no deja moverlo, se usa el ajuste estándar de Laravel en compartido.
-- **Symlink de storage:** lo evitamos guardando en `public/uploads` directamente.
+## Riesgos / cosas a confirmar con Neubox (cPanel)
+- **PHP 8.2** disponible ✅ (WordPress puede seguir en 7.4; el subdominio nuevo usa 8.2).
+- **SSH/Composer/Terminal:** por confirmar; si no hay, despliegue por **FTP** + plan de migraciones sin consola.
+- **Document root del subdominio → `public/`**.
+- **Cron** para respaldos automáticos; si no hay, respaldo manual.
+- **Convivencia con WordPress:** el Laravel va en subdominio aparte; el WP no se toca hasta el cambio final.
 
-## Fuera de alcance (fase 2, cuando se quiera)
-Hacer editables también: Recorridos, textos del hero/nosotros, testimonios, FAQ, Servicios Extras, Galería y datos de contacto. Todo reusa el **mismo patrón** (tabla + Resource de Filament + `@foreach` en el Blade), así que crece sin rediseñar nada.
-
-## Nota
-Tras aprobar, guardo una copia de esta estrategia como `MANEJADOR_ESTRATEGIA.md` en el proyecto, junto al `PLAN_MAPA_RECORRIDOS.md`.
+## Fuera de alcance (Fase 2)
+- **Ajustes del sitio** (singleton): WhatsApp, redes y datos de contacto editables en un solo lugar.
+- Hacer editables: Recorridos, mapa (lugares), hero/nosotros, testimonios, FAQ, Servicios Extras y Galería (mismo patrón).

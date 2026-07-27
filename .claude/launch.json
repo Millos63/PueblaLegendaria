@@ -6,6 +6,12 @@
       "runtimeExecutable": "php",
       "runtimeArgs": ["-S", "127.0.0.1:8123", "-t", "/Users/millos63/Documents/Work/PueblaLegendariaArchivos/PueblaLegendaria"],
       "port": 8123
+    },
+    {
+      "name": "laravel",
+      "runtimeExecutable": "php",
+      "runtimeArgs": ["/Users/millos63/Herd/puebla-legendaria/artisan", "serve", "--host=127.0.0.1", "--port=8310"],
+      "port": 8310
     }
   ]
 }
