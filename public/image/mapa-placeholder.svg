@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1500" font-family="Inter, Arial, sans-serif">
+  <!-- Fondo tipo plano de ciudad (placeholder temporal) -->
+  <rect width="2000" height="1500" fill="#eae6dc"/>
+
+  <!-- Manzanas -->
+  <g fill="#f4f1e8">
+    <rect x="60" y="60" width="1880" height="1380"/>
+  </g>
+
+  <!-- Parque (verde) -->
+  <rect x="240" y="240" width="280" height="260" rx="6" fill="#a9e0a0"/>
+  <text x="380" y="380" fill="#3c7a34" font-size="34" font-weight="700" text-anchor="middle">Zócalo</text>
+
+  <!-- Calles verticales -->
+  <g stroke="#9bb4d6" stroke-width="26" opacity="0.85">
+    <line x1="220" y1="40" x2="220" y2="1460"/>
+    <line x1="500" y1="40" x2="500" y2="1460"/>
+    <line x1="780" y1="40" x2="780" y2="1460"/>
+    <line x1="1060" y1="40" x2="1060" y2="1460"/>
+    <line x1="1340" y1="40" x2="1340" y2="1460"/>
+    <line x1="1620" y1="40" x2="1620" y2="1460"/>
+  </g>
+  <!-- Calles horizontales -->
+  <g stroke="#9bb4d6" stroke-width="26" opacity="0.85">
+    <line x1="40" y1="200" x2="1960" y2="200"/>
+    <line x1="40" y1="460" x2="1960" y2="460"/>
+    <line x1="40" y1="720" x2="1960" y2="720"/>
+    <line x1="40" y1="980" x2="1960" y2="980"/>
+    <line x1="40" y1="1240" x2="1960" y2="1240"/>
+  </g>
+
+  <!-- Ruta de ejemplo (verde) -->
+  <polyline points="360,330 360,720 780,720 780,980 1340,980 1340,460 1620,460"
+            fill="none" stroke="#5fcf5f" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+
+  <!-- Nombres de calle de ejemplo -->
+  <g fill="#5a6b86" font-size="26">
+    <text x="900" y="190" text-anchor="middle">Av. 2 Ote</text>
+    <text x="900" y="710" text-anchor="middle">Av. Don Juan de Palafox</text>
+    <text x="900" y="1230" text-anchor="middle">Av. 7 Ote</text>
+  </g>
+
+  <!-- Marca de agua -->
+  <text x="1000" y="800" text-anchor="middle" fill="#c9c2b2" font-size="70" font-weight="700" opacity="0.6">MAPA BASE · placeholder</text>
+  <text x="1000" y="860" text-anchor="middle" fill="#c9c2b2" font-size="30" opacity="0.7">reemplazar por image/mapa-base.webp</text>
+</svg>
