@@ -69,8 +69,14 @@ class CallejoneadaResource extends Resource
 
             Forms\Components\TextInput::make('titulo')->label('Título')->required()->maxLength(80),
             Forms\Components\Textarea::make('texto')->label('Descripción')->rows(3)->maxLength(300),
+            Forms\Components\Textarea::make('descripcion_ampliada')
+                ->label('Descripción ampliada')
+                ->rows(6)
+                ->maxLength(2000)
+                ->default('Describe aquí la experiencia completa del recorrido, sus personajes y los lugares que visitarán.')
+                ->helperText('Se muestra al hacer clic en la imagen. Incluye la descripción breve de la tarjeta y añade más contexto.'),
             Forms\Components\TextInput::make('cta_url')
-                ->label('Enlace del botón')
+                ->label('Enlace para pedir más información')
                 ->default('#contacto')
                 ->maxLength(255),
             Forms\Components\Toggle::make('activo')->label('Activa (visible en el sitio)')->default(true),

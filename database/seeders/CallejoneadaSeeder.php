@@ -25,9 +25,18 @@ class CallejoneadaSeeder extends Seeder
         ];
 
         foreach ($callejoneadas as $orden => $callejoneada) {
+            $descripcionAmpliada = $callejoneada['texto']
+                ."\n\nAcompáñanos a descubrir los rincones, personajes e historias que hacen única esta experiencia por Puebla."
+                ."\n\nDescubre todos los detalles de esta callejoneada y vive una experiencia inolvidable por las calles de Puebla.";
+
             Callejoneada::firstOrCreate(
                 ['titulo' => $callejoneada['titulo']],
-                $callejoneada + ['cta_url' => '#contacto', 'activo' => true, 'orden' => $orden],
+                $callejoneada + [
+                    'descripcion_ampliada' => $descripcionAmpliada,
+                    'cta_url' => '#contacto',
+                    'activo' => true,
+                    'orden' => $orden,
+                ],
             );
         }
     }

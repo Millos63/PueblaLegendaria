@@ -203,6 +203,12 @@ a {
   font-size: 1.25rem;
   filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.5));
 }
+.nav__brand-logo {
+  display: block;
+  height: 64px;
+  width: auto;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
+}
 
 .nav__toggle {
   width: 44px;
@@ -214,6 +220,8 @@ a {
   border: 1px solid var(--color-glass-border);
   border-radius: var(--radius-sm);
   cursor: pointer;
+  position: relative;
+  z-index: 50;
 }
 .nav__line {
   width: 20px;
@@ -234,8 +242,10 @@ a {
 .nav__menu {
   position: fixed;
   inset: 0;
-  background: rgba(5, 5, 10, 0.96);
-  backdrop-filter: blur(8px);
+  z-index: 40;
+  background: rgba(8, 8, 14, 0.72);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
   display: grid;
   place-content: center;
   gap: 1rem;
@@ -302,7 +312,7 @@ a {
   isolation: isolate;
   background:
     linear-gradient(0deg, rgba(0, 0, 0, 0.85) 10%, rgba(0, 0, 0, 0.25) 70%),
-    url("Images/ImagenPuebla.png") center/cover no-repeat;
+    url("Images/ImagenPuebla.jpg") center/cover no-repeat;
   box-shadow: inset 0 0 160px rgba(0, 0, 0, 0.8);
 }
 
@@ -502,13 +512,27 @@ a {
   border: 1px solid rgba(212, 175, 55, 0.2);
   box-shadow: var(--shadow-soft);
 }
+.tour-card__image-button {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: zoom-in;
+}
+.tour-card__image-button:focus-visible {
+  outline: 3px solid var(--color-gold-light);
+  outline-offset: -5px;
+}
 .tour-card__img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(20%) brightness(0.85);
+  filter: grayscale(0%) brightness(0.97);
   transition: transform 0.45s ease, filter 0.45s ease;
 }
 .tour-card__overlay {
@@ -516,6 +540,7 @@ a {
   inset: 0;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.72) 25%, rgba(0, 0, 0, 0.08) 100%);
   transition: var(--transition);
+  pointer-events: none;
 }
 .tour-card__content {
   position: relative;
@@ -525,6 +550,7 @@ a {
   flex-direction: column;
   justify-content: flex-end;
   gap: 0.35rem;
+  pointer-events: none;
 }
 .tour-card__badge {
   align-self: flex-start;
@@ -564,6 +590,7 @@ a {
   font-size: 0.74rem;
   letter-spacing: 1px;
   text-transform: uppercase;
+  pointer-events: auto;
 }
 
 .tour-card:hover {
@@ -572,7 +599,7 @@ a {
 }
 .tour-card:hover .tour-card__img {
   transform: scale(1.08);
-  filter: grayscale(0%) brightness(0.8);
+  filter: grayscale(0%) brightness(1.05);
 }
 .tour-card:hover .tour-card__overlay {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.76) 25%, rgba(0, 0, 0, 0.1) 100%);
@@ -580,6 +607,88 @@ a {
 .tour-card:hover .tour-card__cta {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Ventana ampliada de callejoneadas */
+.tour-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+}
+.tour-modal[hidden] { display: none; }
+.tour-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(3, 3, 6, 0.82);
+  backdrop-filter: blur(6px);
+}
+.tour-modal__card {
+  position: relative;
+  width: min(940px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  background: linear-gradient(165deg, #1a1722, #110f17);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft), var(--shadow-glow);
+  animation: fadeUp 0.4s ease;
+}
+.tour-modal__img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  max-height: 90vh;
+  object-fit: cover;
+  display: block;
+}
+.tour-modal__body {
+  padding: clamp(1.5rem, 4vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tour-modal__title {
+  margin: 0 0 1rem;
+  font-family: "Cinzel Decorative", serif;
+  color: var(--color-gold-light);
+  font-size: clamp(1.35rem, 2.5vw, 2.1rem);
+  line-height: 1.25;
+}
+.tour-modal__description {
+  margin: 0;
+  color: #e1dbd0;
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.75;
+  white-space: pre-line;
+}
+.tour-modal__cta {
+  align-self: flex-start;
+  margin-top: 1.7rem;
+}
+.tour-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--color-glass-border);
+  background: rgba(10, 10, 15, 0.74);
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.tour-modal__close:hover,
+.tour-modal__close:focus-visible {
+  border-color: rgba(212, 175, 55, 0.7);
+  color: var(--color-gold-light);
 }
 
 .tour-card--red { border-top: 3px solid #8b0000; }
@@ -710,7 +819,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(30%) brightness(0.8);
+  filter: grayscale(0%) brightness(0.97);
   transition: var(--transition);
 }
 .gallery__overlay {
@@ -853,6 +962,15 @@ a {
 .footer h3 {
   margin: 0 0 0.5rem;
   font-family: "Playfair Display", serif;
+}
+.footer__brand {
+  margin: 0 0 0.9rem;
+}
+.footer__logo {
+  display: block;
+  width: 130px;
+  max-width: 60%;
+  height: auto;
 }
 .footer ul {
   list-style: none;
@@ -1013,7 +1131,7 @@ a {
   width: 116%;
   height: 116%;
   object-fit: cover;
-  filter: grayscale(25%) brightness(0.65);
+  filter: grayscale(0%) brightness(0.97);
   transform: translateZ(-50px) scale(1.1);
 }
 .ruta__card-img + .ruta__card-shine {
@@ -1122,13 +1240,13 @@ a {
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  filter: grayscale(20%) brightness(0.82);
+  filter: grayscale(0%) brightness(0.97);
   border-bottom: 1px solid rgba(212, 175, 55, 0.28);
   transition: transform 0.45s ease, filter 0.45s ease;
 }
 .promo-card:hover .promo-card__img {
   transform: scale(1.05);
-  filter: grayscale(0%) brightness(0.92);
+  filter: grayscale(0%) brightness(1.05);
 }
 .promo-card__body {
   display: flex;
@@ -1299,7 +1417,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: grayscale(25%) brightness(0.8);
+  filter: grayscale(0%) brightness(0.97);
   transition: transform 0.45s ease, filter 0.45s ease;
 }
 .evento-card__overlay {
@@ -1363,7 +1481,7 @@ a {
 }
 .evento-card:hover .evento-card__img {
   transform: scale(1.07);
-  filter: grayscale(0%) brightness(0.82);
+  filter: grayscale(0%) brightness(1.05);
 }
 
 /* =========================
@@ -1459,13 +1577,13 @@ a {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  filter: grayscale(20%) brightness(0.82);
+  filter: grayscale(0%) brightness(0.97);
   border-bottom: 1px solid rgba(212, 175, 55, 0.28);
   transition: transform 0.45s ease, filter 0.45s ease;
 }
 .tienda-card:hover .tienda-card__img {
   transform: scale(1.05);
-  filter: grayscale(0%) brightness(0.92);
+  filter: grayscale(0%) brightness(1.05);
 }
 .tienda-card__body {
   display: flex;
@@ -2016,6 +2134,13 @@ a {
   .tour-card { min-height: 380px; }
 }
 
+@media (max-width: 640px) {
+  .tour-modal__card { grid-template-columns: 1fr; }
+  .tour-modal__img { min-height: 0; height: min(48vh, 430px); }
+  .tour-modal__body { padding: 1.4rem; }
+  .nav__brand-logo { height: 52px; }
+}
+
 @media (min-width: 768px) {
   .tours__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2083,6 +2208,15 @@ a {
     gap: 0.55rem;
     text-align: center;
     font-size: 0.78rem;
+  }
+  /* Tarjeta de detalle en formato vertical (retrato), centrada */
+  .ruta__detail {
+    max-width: 620px;
+    width: 100%;
+    margin-inline: auto;
+  }
+  .ruta__card {
+    min-height: 520px;
   }
 
   .gallery__grid {

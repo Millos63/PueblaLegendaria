@@ -19,10 +19,7 @@
     <meta property="og:url" content="https://pueblalegendaria.com" />
     <meta property="og:image" content="https://picsum.photos/1200/630?random=300&grayscale" />
 
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🕯️</text></svg>"
-    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v={{ @filemtime(public_path('favicon.svg')) ?: '1' }}" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -79,8 +76,7 @@
     <header class="header" id="inicio">
       <div class="container nav">
         <a class="nav__brand" href="#inicio" aria-label="Puebla Legendaria inicio">
-          <span class="nav__brand-icon"><svg class="ic"><use href="#ic-building"/></svg></span>
-          <span>PUEBLA LEGENDARIA</span>
+          <img class="nav__brand-logo" src="logos/logo_horizontal.svg" alt="Puebla Legendaria" width="180" height="90" />
         </a>
 
         <button
@@ -200,65 +196,65 @@
               </button>
               <button class="ruta__node" role="tab" aria-selected="false" aria-controls="ruta-panel-1" id="ruta-tab-1" data-step="1">
                 <span class="ruta__dot"></span>
-                <span class="ruta__node-label">Calles empedradas</span>
+                <span class="ruta__node-label">Adentrándonos a la historia</span>
               </button>
               <button class="ruta__node" role="tab" aria-selected="false" aria-controls="ruta-panel-2" id="ruta-tab-2" data-step="2">
                 <span class="ruta__dot"></span>
-                <span class="ruta__node-label">Callejón oscuro</span>
+                <span class="ruta__node-label">Sitios Emblemáticos</span>
               </button>
               <button class="ruta__node" role="tab" aria-selected="false" aria-controls="ruta-panel-3" id="ruta-tab-3" data-step="3">
                 <span class="ruta__dot"></span>
-                <span class="ruta__node-label">Plaza histórica</span>
+                <span class="ruta__node-label">Personajes Legendarios</span>
               </button>
               <button class="ruta__node" role="tab" aria-selected="false" aria-controls="ruta-panel-4" id="ruta-tab-4" data-step="4">
                 <span class="ruta__dot"></span>
-                <span class="ruta__node-label">Final inolvidable</span>
+                <span class="ruta__node-label">Final Inolvidable</span>
               </button>
             </div>
 
             <div class="ruta__detail" id="rutaStage">
               <article class="ruta__panel ruta__card is-active" role="tabpanel" id="ruta-panel-0" aria-labelledby="ruta-tab-0">
-                <img class="ruta__card-img" src="image/tour-leyendas-clasico.webp" alt="" loading="lazy" />
+                <img class="ruta__card-img" src="image/callejoneada/paso-1-punto-reunion.jpg" alt="Personajes de época colonial dan la bienvenida frente al Palacio Municipal de Puebla" loading="lazy" />
                 <span class="ruta__card-shine" aria-hidden="true"></span>
                 <div class="ruta__card-body">
                   <span class="ruta__panel-icon"><svg class="ic"><use href="#ic-candle"/></svg></span>
                   <h3 class="ruta__panel-title">Punto de reunión</h3>
-                  <p class="ruta__panel-text">Nos encontramos en el Centro Histórico al caer la noche. Tu guía enciende la primera vela y la aventura comienza.</p>
+                  <p class="ruta__panel-text">Iniciamos en el portal junto a la entrada a Palacio Municipal. Ahí te daremos la bienvenida, se hace una introducción de la fundación de Puebla y comienza nuestro andar por los callejones.</p>
                 </div>
               </article>
               <article class="ruta__panel ruta__card" role="tabpanel" id="ruta-panel-1" aria-labelledby="ruta-tab-1" hidden>
-                <img class="ruta__card-img" src="image/tour-callejones-centro.webp" alt="" loading="lazy" />
+                <img class="ruta__card-img" src="image/callejoneada/paso-2-adentrandonos-historia.jpg" alt="Guía narrando la historia ante el grupo y la fuente de San Miguel iluminada" loading="lazy" />
                 <span class="ruta__card-shine" aria-hidden="true"></span>
                 <div class="ruta__card-body">
                   <span class="ruta__panel-icon"><svg class="ic"><use href="#ic-walk"/></svg></span>
-                  <h3 class="ruta__panel-title">Calles empedradas</h3>
-                  <p class="ruta__panel-text">Caminamos juntos por las calles donde inicia la historia. Cada esquina guarda una leyenda esperando ser contada.</p>
+                  <h3 class="ruta__panel-title">Adentrándonos a la historia</h3>
+                  <p class="ruta__panel-text">Caminamos juntos por calles y callejones donde inicia el relato. Con cada paso nos adentramos más en la historia y las leyendas de Puebla.</p>
                 </div>
               </article>
               <article class="ruta__panel ruta__card" role="tabpanel" id="ruta-panel-2" aria-labelledby="ruta-tab-2" hidden>
-                <img class="ruta__card-img" src="image/tour-santa-inquisicion.webp" alt="" loading="lazy" />
-                <span class="ruta__card-shine" aria-hidden="true"></span>
-                <div class="ruta__card-body">
-                  <span class="ruta__panel-icon"><svg class="ic"><use href="#ic-key"/></svg></span>
-                  <h3 class="ruta__panel-title">Callejón oscuro</h3>
-                  <p class="ruta__panel-text">Entre sombras y velas aparecen los personajes. Aquí la frontera entre el presente y el pasado se desvanece.</p>
-                </div>
-              </article>
-              <article class="ruta__panel ruta__card" role="tabpanel" id="ruta-panel-3" aria-labelledby="ruta-tab-3" hidden>
-                <img class="ruta__card-img" src="image/tour-fundacion-cholula.webp" alt="" loading="lazy" />
+                <img class="ruta__card-img" src="image/callejoneada/paso-3-sitios-emblematicos.jpg" alt="Actuación frente a un edificio colonial emblemático del Centro Histórico de Puebla" loading="lazy" />
                 <span class="ruta__card-shine" aria-hidden="true"></span>
                 <div class="ruta__card-body">
                   <span class="ruta__panel-icon"><svg class="ic"><use href="#ic-church"/></svg></span>
-                  <h3 class="ruta__panel-title">Plaza histórica</h3>
-                  <p class="ruta__panel-text">La leyenda se revela en un punto emblemático de la ciudad, rodeado de arquitectura colonial y misterio.</p>
+                  <h3 class="ruta__panel-title">Sitios Emblemáticos</h3>
+                  <p class="ruta__panel-text">Recorremos plazas, templos y rincones emblemáticos del Centro Histórico, donde la arquitectura colonial guarda siglos de misterio.</p>
+                </div>
+              </article>
+              <article class="ruta__panel ruta__card" role="tabpanel" id="ruta-panel-3" aria-labelledby="ruta-tab-3" hidden>
+                <img class="ruta__card-img" src="image/callejoneada/paso-4-personajes-legendarios.jpg" alt="Personaje legendario caracterizado actuando en un callejón adornado con papel picado" loading="lazy" />
+                <span class="ruta__card-shine" aria-hidden="true"></span>
+                <div class="ruta__card-body">
+                  <span class="ruta__panel-icon"><svg class="ic"><use href="#ic-masks"/></svg></span>
+                  <h3 class="ruta__panel-title">Personajes Legendarios</h3>
+                  <p class="ruta__panel-text">Entre sombras y velas, los personajes del pasado salen a tu encuentro y cobran vida ante tus ojos.</p>
                 </div>
               </article>
               <article class="ruta__panel ruta__card" role="tabpanel" id="ruta-panel-4" aria-labelledby="ruta-tab-4" hidden>
-                <img class="ruta__card-img" src="image/tour-angeles-demonios.webp" alt="" loading="lazy" />
+                <img class="ruta__card-img" src="image/callejoneada/paso-5-final-inolvidable.jpg" alt="El grupo reunido con los personajes al final del recorrido nocturno" loading="lazy" />
                 <span class="ruta__card-shine" aria-hidden="true"></span>
                 <div class="ruta__card-body">
                   <span class="ruta__panel-icon"><svg class="ic"><use href="#ic-moon"/></svg></span>
-                  <h3 class="ruta__panel-title">Final inolvidable</h3>
+                  <h3 class="ruta__panel-title">Final Inolvidable</h3>
                   <p class="ruta__panel-text">Un cierre inmersivo que se queda contigo para siempre. Caminaste por Puebla… y la historia caminó contigo.</p>
                 </div>
               </article>
@@ -276,8 +272,6 @@
             arrastra para explorar y toca cada punto para ver su imagen y su historia.
           </p>
           <p class="mapa__aviso reveal">Nuestros recorridos están sujetos a cambios por situaciones externas.</p>
-          <p class="promos__note reveal">⚠️ Descripciones de los lugares y posiciones finas de los pines aún por afinar.</p>
-
           <div class="mapa__tabs reveal" role="tablist" aria-label="Selecciona un recorrido">
             <button class="mapa__tab is-active" role="tab" aria-selected="true" data-recorrido="ultratumba"><svg class="ic ic--inline"><use href="#ic-candle"/></svg>Leyendas de Ultratumba</button>
             <button class="mapa__tab" role="tab" aria-selected="false" data-recorrido="santa-clara"><svg class="ic ic--inline"><use href="#ic-church"/></svg>Santa Clara</button>
@@ -325,7 +319,18 @@
           <div class="tours__grid">
             @foreach ($callejoneadas as $callejoneada)
               <article class="tour-card tour-card--{{ $callejoneada->estilo }} reveal">
-                @if ($callejoneada->imagen)<img class="tour-card__img" src="{{ $callejoneada->imagen }}" alt="{{ $callejoneada->titulo }}" loading="lazy" />@endif
+                @if ($callejoneada->imagen)
+                  <button
+                    class="tour-card__image-button"
+                    type="button"
+                    data-tour-modal
+                    data-title="{{ $callejoneada->titulo }}"
+                    data-description="{{ $callejoneada->descripcion_ampliada ?: 'Descubre todos los detalles de esta callejoneada y vive una experiencia inolvidable por las calles de Puebla.' }}"
+                    data-image="{{ $callejoneada->imagen }}"
+                    data-contact-url="{{ $callejoneada->cta_url ?: '#contacto' }}"
+                    aria-label="Ver detalles de {{ $callejoneada->titulo }}"
+                  ><img class="tour-card__img" src="{{ $callejoneada->imagen }}" alt="{{ $callejoneada->titulo }}" loading="lazy" /></button>
+                @endif
                 <div class="tour-card__overlay"></div>
                 <div class="tour-card__content">
                   @if ($callejoneada->badge)<span class="tour-card__badge">@if ($callejoneada->badge_icono)<svg class="ic ic--inline"><use href="#{{ $callejoneada->badge_icono }}"/></svg>@endif{{ $callejoneada->badge }}</span>@endif
@@ -344,8 +349,6 @@
         <div class="container">
           <span class="section__kicker reveal">Ofertas vivas</span>
           <h2 class="section__title reveal">Promociones</h2>
-          <p class="promos__note reveal">⚠️ Las fotos son provisionales — reemplázalas por imágenes propias de cada promoción.</p>
-
           <div class="promos__carousel">
             <button type="button" class="carousel__nav carousel__nav--prev" aria-label="Anterior" onclick="carruselDeslizar('promosTrack', -1)">‹</button>
             <div class="promos__grid" id="promosTrack">
@@ -373,8 +376,6 @@
         <div class="container">
           <span class="section__kicker reveal">Fechas marcadas en rojo</span>
           <h2 class="section__title reveal">Eventos de temporada</h2>
-          <p class="promos__note reveal">⚠️ Contenido de ejemplo — esta información se actualizará desde el manejador del sitio.</p>
-
           <div class="eventos__carousel">
             <button type="button" class="carousel__nav carousel__nav--prev" aria-label="Anterior" onclick="carruselDeslizar('eventosTrack', -1)">‹</button>
             <div class="eventos__grid" id="eventosTrack">
@@ -514,28 +515,28 @@
 
           <div class="gallery__grid">
             <figure class="gallery__item reveal">
-              <img src="https://picsum.photos/800/600?random=21&grayscale" alt="Escena nocturna de recorrido" loading="lazy" />
-              <figcaption class="gallery__overlay">Tour de Leyendas Clásico</figcaption>
+              <img src="image/galeria/la-parca-guadana-templo.jpg" alt="La Parca con su guadaña frente a un templo iluminado de Puebla por la noche" loading="lazy" />
+              <figcaption class="gallery__overlay">La Parca · Leyendas del Estado</figcaption>
             </figure>
             <figure class="gallery__item reveal">
-              <img src="https://picsum.photos/600/800?random=22&grayscale" alt="Callejón colonial de Puebla" loading="lazy" />
-              <figcaption class="gallery__overlay">Callejones del Centro</figcaption>
+              <img src="image/galeria/fogata-ex-hacienda-chautla.jpg" alt="Personaje actuando junto a una fogata rodeado de visitantes en el patio de la Ex Hacienda de Chautla" loading="lazy" />
+              <figcaption class="gallery__overlay">Fogata en la Ex Hacienda de Chautla</figcaption>
             </figure>
             <figure class="gallery__item reveal">
-              <img src="https://picsum.photos/800/400?random=23&grayscale" alt="Personaje teatral histórico" loading="lazy" />
-              <figcaption class="gallery__overlay">Hermanos Serdán</figcaption>
+              <img src="image/galeria/nahual-hombre-lobo-catedral.jpg" alt="Personaje caracterizado como nahual frente a la Catedral de Puebla" loading="lazy" style="object-position: 50% 18%;" />
+              <figcaption class="gallery__overlay">El Nahual en el Centro Histórico</figcaption>
             </figure>
             <figure class="gallery__item reveal">
-              <img src="https://picsum.photos/400/600?random=24&grayscale" alt="Arquitectura colonial en la noche" loading="lazy" />
-              <figcaption class="gallery__overlay">Ángeles y Demonios</figcaption>
+              <img src="image/galeria/marquesa-vestido-dorado.jpg" alt="La Marquesa con vestido colonial dorado arrodillada en una calle empedrada de noche" loading="lazy" style="object-position: 50% 18%;" />
+              <figcaption class="gallery__overlay">La Marquesa de la Selva Nevada</figcaption>
             </figure>
             <figure class="gallery__item reveal">
-              <img src="https://picsum.photos/800/600?random=25&grayscale" alt="Velas y ambiente misterioso" loading="lazy" />
-              <figcaption class="gallery__overlay">La Santa Inquisición</figcaption>
+              <img src="image/galeria/guia-narrador-publico-callejoneada.jpg" alt="Guía narrador actuando ante el público sentado durante una callejoneada nocturna" loading="lazy" />
+              <figcaption class="gallery__overlay">Callejoneada bajo las estrellas</figcaption>
             </figure>
             <figure class="gallery__item reveal">
-              <img src="https://picsum.photos/600/800?random=26&grayscale" alt="Recorrido familiar en sitio histórico" loading="lazy" />
-              <figcaption class="gallery__overlay">Ex Hacienda de Chautla</figcaption>
+              <img src="image/galeria/tuneles-secretos-recorrido.jpg" alt="Grupo de visitantes recorriendo los túneles secretos de piedra de Puebla" loading="lazy" />
+              <figcaption class="gallery__overlay">Los túneles secretos de Puebla</figcaption>
             </figure>
           </div>
         </div>
@@ -548,8 +549,6 @@
           <p class="tienda__intro reveal">
             Recuerdos de Puebla Legendaria para que la noche te acompañe a donde vayas.
           </p>
-          <p class="promos__note reveal">⚠️ Productos y fotos de ejemplo — pendiente definir catálogo, precios e imágenes reales.</p>
-
           <div class="tienda__carousel">
             <button type="button" class="carousel__nav carousel__nav--prev" aria-label="Anterior" onclick="carruselDeslizar('tiendaTrack', -1)">‹</button>
             <div class="tienda__grid" id="tiendaTrack">
@@ -669,7 +668,7 @@
     <footer class="footer" aria-label="Pie de página">
       <div class="container footer__grid">
         <section>
-          <h3><svg class="ic ic--inline"><use href="#ic-building"/></svg>Puebla Legendaria</h3>
+          <h3 class="footer__brand"><img class="footer__logo" src="logos/logo_vertical.svg" alt="Puebla Legendaria" width="130" height="130" /></h3>
           <p>Turismo cultural actuado con identidad poblana. Misterio, historia y emoción en cada recorrido.</p>
           <p><strong>Desde 2002</strong></p>
         </section>
@@ -702,6 +701,8 @@
           <h4>Redes</h4>
           <ul>
             <li><a href="https://facebook.com/tourdeleyendas" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://x.com/PueblaLegendaria" target="_blank" rel="noopener">X</a></li>
+            <li><a href="https://www.youtube.com/@PueblaLegendaria" target="_blank" rel="noopener">YouTube</a></li>
             <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="https://wa.me/522222650024" target="_blank" rel="noopener">WhatsApp</a></li>
             <li><a href="#" target="_blank" rel="noopener">TikTok</a></li>
@@ -728,6 +729,19 @@
       </figure>
     </div>
 
+    <div class="tour-modal" id="tourModal" hidden>
+      <div class="tour-modal__backdrop" data-tour-close></div>
+      <article class="tour-modal__card" role="dialog" aria-modal="true" aria-labelledby="tourModalTitle" aria-describedby="tourModalDescription">
+        <button class="tour-modal__close" type="button" data-tour-close aria-label="Cerrar">✕</button>
+        <img class="tour-modal__img" id="tourModalImg" src="" alt="" />
+        <div class="tour-modal__body">
+          <h3 class="tour-modal__title" id="tourModalTitle"></h3>
+          <p class="tour-modal__description" id="tourModalDescription"></p>
+          <a class="btn btn--gold btn--shine tour-modal__cta" id="tourModalCta" href="#contacto">Pedir más información</a>
+        </div>
+      </article>
+    </div>
+
     <a
       class="whatsapp-float"
       href="https://wa.me/522222650024"
@@ -746,6 +760,46 @@
         var step = card ? card.getBoundingClientRect().width + 16 : track.clientWidth * 0.8;
         track.scrollBy({ left: dir * step, behavior: "smooth" });
       }
+
+      // Detalle ampliado de las callejoneadas
+      (function () {
+        var modal = document.getElementById("tourModal");
+        var modalImg = document.getElementById("tourModalImg");
+        var modalTitle = document.getElementById("tourModalTitle");
+        var modalDescription = document.getElementById("tourModalDescription");
+        var modalCta = document.getElementById("tourModalCta");
+        var lastFocused = null;
+
+        function openTourModal(trigger) {
+          lastFocused = trigger;
+          modalTitle.textContent = trigger.dataset.title || "";
+          modalDescription.textContent = trigger.dataset.description || "";
+          modalImg.src = trigger.dataset.image || "";
+          modalImg.alt = trigger.dataset.title || "";
+          modalCta.href = trigger.dataset.contactUrl || "#contacto";
+          modal.hidden = false;
+          document.body.style.overflow = "hidden";
+          modal.querySelector(".tour-modal__close").focus();
+        }
+
+        function closeTourModal() {
+          if (modal.hidden) return;
+          modal.hidden = true;
+          document.body.style.overflow = "";
+          if (lastFocused) lastFocused.focus();
+        }
+
+        document.querySelectorAll("[data-tour-modal]").forEach(function (trigger) {
+          trigger.addEventListener("click", function () { openTourModal(trigger); });
+        });
+        modal.querySelectorAll("[data-tour-close]").forEach(function (control) {
+          control.addEventListener("click", closeTourModal);
+        });
+        modalCta.addEventListener("click", closeTourModal);
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") closeTourModal();
+        });
+      })();
 
       const header = document.querySelector(".header");
       const navToggle = document.getElementById("navToggle");
@@ -1114,26 +1168,26 @@
 
         // Un lugar se define UNA sola vez, aunque aparezca en varios recorridos
         const LUGARES = {
-          "palacio-municipal":      { titulo: "Palacio Municipal",                img: "image/mapa/palacio-municipal.jpg",      desc: "Sede del gobierno municipal, joya arquitectónica frente al Zócalo. (Texto editable.)" },
-          "fuente-san-miguel":      { titulo: "Fuente de San Miguel",             img: "image/mapa/fuente-san-miguel.jpg",      desc: "Fuente emblemática del Zócalo, rodeada de arquitectura colonial. (Texto editable.)" },
-          "catedral":               { titulo: "Catedral de Puebla",               img: "image/mapa/catedral.jpg",               desc: "La Catedral Basílica de Nuestra Señora de la Inmaculada Concepción, símbolo de la ciudad. (Texto editable.)" },
-          "pasaje-ayuntamiento":    { titulo: "Pasaje del Ayuntamiento",          img: "image/mapa/pasaje-ayuntamiento.jpg",    desc: "Pasaje histórico junto al Palacio Municipal. (Texto editable.)" },
-          "santo-domingo":          { titulo: "Iglesia de Santo Domingo",         img: "image/mapa/santo-domingo.jpg",          desc: "Templo que alberga la Capilla del Rosario, joya del barroco. (Texto editable.)" },
-          "mercado-victoria":       { titulo: "Mercado La Victoria",              img: "image/mapa/mercado-victoria.jpg",       desc: "Antiguo mercado tradicional de Puebla. (Texto editable.)" },
-          "calle-dulces":           { titulo: "Calle de los Dulces",              img: "image/mapa/calle-dulces.jpg",           desc: "La calle de los dulces típicos poblanos. (Texto editable.)" },
-          "fabrica-talavera":       { titulo: "Fábrica de Talavera",              img: "image/mapa/fabrica-talavera.jpg",       desc: "Taller tradicional de la talavera poblana. (Texto editable.)" },
-          "exconvento-santa-clara": { titulo: "Exconvento de Santa Clara",        img: "image/mapa/exconvento-santa-clara.jpg", desc: "Exconvento que da nombre a este recorrido. (Texto editable.)" },
-          "casa-hermanos-serdan":   { titulo: "Casa de los Hermanos Serdán",      img: "image/mapa/casa-hermanos-serdan.jpg",   desc: "Donde inició la Revolución Mexicana. (Texto editable.)" },
-          "casa-munecos":           { titulo: "Casa de los Muñecos",              img: "image/mapa/casa-munecos.jpg",           desc: "Famosa por los personajes de talavera de su fachada. (Texto editable.)" },
-          "edificio-carolino":      { titulo: "Edificio Carolino",                img: "image/mapa/edificio-carolino.jpg",      desc: "Sede histórica de la Universidad, con bellos patios coloniales. (Texto editable.)" },
-          "el-parian":              { titulo: "Mercado de Artesanías El Parián",  img: "image/mapa/el-parian.jpg",              desc: "El mercado de artesanías más tradicional de Puebla. (Texto editable.)" },
-          "barrio-artista":         { titulo: "Barrio del Artista",               img: "image/mapa/barrio-artista.jpg",         desc: "Espacio bohemio donde pintores y artistas trabajan al aire libre. (Texto editable.)" },
-          "teatro-principal":       { titulo: "Teatro Principal",                 img: "image/mapa/teatro-principal.jpg",       desc: "Uno de los teatros más antiguos de América. (Texto editable.)" },
-          "maqueta-fundacion":      { titulo: "Maqueta de la Fundación",          img: "image/mapa/maqueta-fundacion.jpg",      desc: "Maqueta que recrea la fundación de la ciudad. (Texto editable.)" },
-          "explanada-compania":     { titulo: "Explanada de la Compañía",         img: "image/mapa/explanada-compania.jpg",     desc: "Explanada junto a la Iglesia de la Compañía. (Texto editable.)" },
-          "casa-inquisicion":       { titulo: "Casa de la Inquisición",           img: "image/mapa/casa-inquisicion.jpg",       desc: "Antigua casa ligada a la historia de la Santa Inquisición. (Texto editable.)" },
-          "iglesia-compania":       { titulo: "Iglesia de la Compañía",           img: "image/mapa/iglesia-compania.jpg",       desc: "Templo barroco ligado a la leyenda de la China Poblana. (Texto editable.)" },
-          "alrededores-carolino":   { titulo: "Alrededores del Edificio Carolino", img: "image/mapa/edificio-carolino.jpg",     desc: "Los callejones e historias que rodean al Carolino. (Texto editable.)" },
+          "palacio-municipal":      { titulo: "Palacio Municipal",                img: "image/mapa/palacio-municipal.jpg",      desc: "Sede del gobierno municipal, joya arquitectónica frente al Zócalo." },
+          "fuente-san-miguel":      { titulo: "Fuente de San Miguel",             img: "image/mapa/fuente-san-miguel.jpg",      desc: "Fuente emblemática del Zócalo, rodeada de arquitectura colonial." },
+          "catedral":               { titulo: "Santa Basílica Catedral de Puebla", img: "image/mapa/catedral.jpg",              desc: "La Catedral Basílica de Nuestra Señora de la Inmaculada Concepción, símbolo de la ciudad." },
+          "pasaje-ayuntamiento":    { titulo: "Pasaje del Ayuntamiento",          img: "image/mapa/pasaje-ayuntamiento.jpg",    desc: "Pasaje histórico junto al Palacio Municipal." },
+          "santo-domingo":          { titulo: "Iglesia de Santo Domingo",         img: "image/mapa/santo-domingo.jpg",          desc: "Templo que alberga la Capilla del Rosario, joya del barroco." },
+          "mercado-victoria":       { titulo: "Mercado La Victoria",              img: "image/mapa/mercado-victoria.jpg",       desc: "Antiguo mercado tradicional de Puebla." },
+          "calle-dulces":           { titulo: "Calle de los Dulces",              img: "image/mapa/calle-dulces.jpg",           desc: "La calle de los dulces típicos poblanos." },
+          "fabrica-talavera":       { titulo: "Fábrica de Talavera",              img: "image/mapa/fabrica-talavera.jpg",       desc: "Taller tradicional de la talavera poblana." },
+          "exconvento-santa-clara": { titulo: "Exconvento de Santa Clara",        img: "image/mapa/exconvento-santa-clara.jpg", desc: "Exconvento que da nombre a este recorrido." },
+          "casa-hermanos-serdan":   { titulo: "Casa de los Hermanos Serdán",      img: "image/mapa/casa-hermanos-serdan.jpg",   desc: "Donde inició la Revolución Mexicana en Puebla." },
+          "casa-munecos":           { titulo: "Casa de los Muñecos",              img: "image/mapa/casa-munecos.jpg",           desc: "Famosa por los personajes de talavera de su fachada." },
+          "edificio-carolino":      { titulo: "Edificio Carolino",                img: "image/mapa/edificio-carolino.jpg",      desc: "Sede histórica de la Universidad, con bellos patios coloniales." },
+          "el-parian":              { titulo: "Mercado de Artesanías El Parián",  img: "image/mapa/el-parian.jpg",              desc: "El mercado de artesanías más tradicional de Puebla." },
+          "barrio-artista":         { titulo: "Barrio del Artista",               img: "image/mapa/barrio-artista.jpg",         desc: "Espacio bohemio donde pintores y artistas trabajan al aire libre." },
+          "teatro-principal":       { titulo: "Teatro Principal",                 img: "image/mapa/teatro-principal.jpg",       desc: "“Antiguo Coliseo”, el primer teatro en América." },
+          "maqueta-fundacion":      { titulo: "Maqueta de la Fundación",          img: "image/mapa/maqueta-fundacion.jpg",      desc: "Maqueta que recrea la fundación de la ciudad." },
+          "explanada-compania":     { titulo: "Explanada de la Compañía",         img: "image/mapa/explanada-compania.jpg",     desc: "Explanada junto a la Iglesia de la Compañía." },
+          "casa-inquisicion":       { titulo: "Casa de la Inquisición",           img: "image/mapa/casa-inquisicion.jpg",       desc: "Antigua casa ligada a la historia de la Santa Inquisición." },
+          "iglesia-compania":       { titulo: "Iglesia de la Compañía",           img: "image/mapa/iglesia-compania.jpg",       desc: "Templo barroco ligado a la leyenda de la China Poblana." },
+          "alrededores-carolino":   { titulo: "Alrededores del Edificio Carolino", img: "image/mapa/edificio-carolino.jpg",     desc: "Los callejones e historias que rodean al Carolino." },
         };
 
         // x = left %, y = top % sobre el mapa base (pin 1 = punto de inicio en los tres)
@@ -1145,9 +1199,9 @@
               { lugar: "fuente-san-miguel",      num: 2,  x: 22.2, y: 47.5 },
               { lugar: "catedral",               num: 3,  x: 25.5, y: 56.0 },
               { lugar: "edificio-carolino",      num: 4,  x: 45.2, y: 73.8 },
-              { lugar: "el-parian",              num: 6,  x: 65.3, y: 59.2 },
-              { lugar: "barrio-artista",         num: 7,  x: 74.7, y: 44.7 },
-              { lugar: "teatro-principal",       num: 8,  x: 75.8, y: 32.7 },
+              { lugar: "el-parian",              num: 5,  x: 65.3, y: 59.2 },
+              { lugar: "barrio-artista",         num: 6,  x: 74.7, y: 44.7 },
+              { lugar: "teatro-principal",       num: 7,  x: 75.8, y: 32.7 },
             ],
             estacionamientos: [
               { x: 39.0, y: 49.0 }, { x: 36.3, y: 64.3 },
@@ -1165,8 +1219,8 @@
               { lugar: "mercado-victoria",       num: 6,  x: 31.3, y: 11.0 },
               { lugar: "calle-dulces",           num: 7,  x: 37.2, y: 13.7 },
               { lugar: "fabrica-talavera",       num: 8,  x: 41.7, y: 16.0 },
-              { lugar: "exconvento-santa-clara", num: 9,  x: 48.7, y: 20.3 },
-              { lugar: "casa-hermanos-serdan",   num: 10, x: 52.4, y: 27.0 },
+              { lugar: "exconvento-santa-clara", num: 10, x: 48.7, y: 20.3 },
+              { lugar: "casa-hermanos-serdan",   num: 9,  x: 52.4, y: 27.0 },
               { lugar: "casa-munecos",           num: 11, x: 35.2, y: 45.9 },
             ],
             estacionamientos: [
@@ -1179,10 +1233,10 @@
               { lugar: "palacio-municipal",      num: 1,  x: 30.6, y: 43.2, inicio: true },
               { lugar: "fuente-san-miguel",      num: 2,  x: 22.2, y: 47.5 },
               { lugar: "maqueta-fundacion",      num: 3,  x: 28.8, y: 50.3 },
-              { lugar: "explanada-compania",     num: 4,  x: 41.8, y: 61.1 },
-              { lugar: "casa-inquisicion",       num: 5,  x: 38.9, y: 70.2 },
+              { lugar: "explanada-compania",     num: 5,  x: 41.8, y: 61.1 },
+              { lugar: "casa-inquisicion",       num: 6,  x: 38.9, y: 70.2 },
               { lugar: "alrededores-carolino",   num: 7,  x: 48.1, y: 76.7 },
-              { lugar: "iglesia-compania",       num: 9,  x: 46.6, y: 61.5 },
+              { lugar: "iglesia-compania",       num: 4,  x: 46.6, y: 61.5 },
             ],
             estacionamientos: [
               { x: 38.9, y: 49.7 }, { x: 36.6, y: 64.1 },
