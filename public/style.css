@@ -426,7 +426,7 @@ a {
 .story {
   background:
     linear-gradient(145deg, rgba(15, 15, 22, 0.94), rgba(20, 20, 30, 0.92)),
-    url("https://picsum.photos/1600/900?random=72&grayscale") center/cover no-repeat;
+    url("image/bg-historia-puebla.webp") center/cover no-repeat;
 }
 
 .story__text {
@@ -729,7 +729,7 @@ a {
 .pact {
   background:
     linear-gradient(160deg, rgba(10, 10, 15, 0.92), rgba(18, 18, 26, 0.95)),
-    url("https://picsum.photos/1400/900?random=65&grayscale") center/cover;
+    url("image/bg-nuestro-pacto.webp") center/cover;
 }
 .pact__grid {
   display: grid;

@@ -16,8 +16,8 @@
       content="Donde las leyendas cobran vida. Más de 16 recorridos temáticos en Puebla."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://pueblalegendaria.com" />
-    <meta property="og:image" content="https://picsum.photos/1200/630?random=300&grayscale" />
+    <meta property="og:url" content="https://www.pueblalegendaria.com" />
+    <meta property="og:image" content="https://www.pueblalegendaria.com/Images/ImagenPuebla.jpg" />
 
     <link rel="icon" type="image/svg+xml" href="favicon.svg?v={{ @filemtime(public_path('favicon.svg')) ?: '1' }}" />
 
