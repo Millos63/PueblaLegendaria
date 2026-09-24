@@ -145,7 +145,7 @@
           <p class="hero__subtitle">Donde las leyendas cobran vida</p>
           <div class="hero__actions">
             <a class="btn btn--gold" href="#recorridos">Explorar Recorridos</a>
-            <a class="btn btn--outline" href="#nosotros">▶ Ver Trailer</a>
+            <button type="button" class="btn btn--outline" id="dispoBtn" aria-haspopup="dialog" aria-controls="dispoModal"><svg class="ic ic--inline"><use href="#ic-calendar"/></svg> Disponibilidad</button>
           </div>
         </div>
 
@@ -223,7 +223,7 @@
                 <div class="ruta__card-body">
                   <span class="ruta__panel-icon"><svg class="ic"><use href="#ic-candle"/></svg></span>
                   <h3 class="ruta__panel-title">Punto de reunión</h3>
-                  <p class="ruta__panel-text">Nos encontramos en el Centro Histórico al caer la noche. Tu guía enciende la primera vela y la aventura comienza.</p>
+                  <p class="ruta__panel-text">Iniciamos en el portal junto a la entrada a Palacio Municipal. Ahí te daremos la bienvenida, se hace una introducción de la fundación de Puebla y comienza nuestro andar por los callejones.</p>
                 </div>
               </article>
               <article class="ruta__panel ruta__card" role="tabpanel" id="ruta-panel-1" aria-labelledby="ruta-tab-1" hidden>
@@ -751,6 +751,16 @@
             </article>
 
             <article class="faq-item reveal">
+              <button class="faq-item__q" aria-expanded="false" aria-controls="faq-a-7" id="faq-q-7">
+                <span>¿Qué días hay recorridos?</span>
+                <span class="faq-item__chevron" aria-hidden="true">⌄</span>
+              </button>
+              <div class="faq-item__a" id="faq-a-7" role="region" aria-labelledby="faq-q-7" hidden>
+                <p>Salimos a las 9:00 p.m. los viernes y sábados durante todo el año, y en temporada de vacaciones todos los días. Si vienes en grupo, tú escoges la fecha y la hora.</p>
+              </div>
+            </article>
+
+            <article class="faq-item reveal">
               <button class="faq-item__q" aria-expanded="false" aria-controls="faq-a-6" id="faq-q-6">
                 <span>¿Cómo reservo?</span>
                 <span class="faq-item__chevron" aria-hidden="true">⌄</span>
@@ -899,7 +909,8 @@
               <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-phone"/></svg><a href="tel:+522222650024">+52 222 265 0024</a></p>
               <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-mail"/></svg><a href="mailto:pueblalegendaria@hotmail.com">pueblalegendaria@hotmail.com</a></p>
               <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-chat"/></svg><a href="https://wa.me/522222650024" target="_blank" rel="noopener">WhatsApp directo</a></p>
-              <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-clock"/></svg>Siempre abiertos por reservación</p>
+              <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-clock"/></svg>Viernes y sábados todo el año · En vacaciones todos los días · 9:00 p.m.</p>
+              <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-calendar"/></svg>Grupos: tú eliges fecha y hora</p>
 
               <iframe
                 title="Mapa Puebla Legendaria"
@@ -974,6 +985,23 @@
           <p class="mapa-modal__desc" id="mapaModalDesc"></p>
         </figcaption>
       </figure>
+    </div>
+
+    <div class="mapa-modal dispo-modal" id="dispoModal" hidden>
+      <div class="mapa-modal__backdrop" data-close></div>
+      <div class="mapa-modal__card dispo-modal__card" role="dialog" aria-modal="true" aria-labelledby="dispoModalTitle">
+        <button class="mapa-modal__close" data-close aria-label="Cerrar">✕</button>
+        <div class="mapa-modal__body">
+          <h3 class="mapa-modal__title" id="dispoModalTitle">¿Cuándo salimos?</h3>
+          <ul class="dispo-modal__list">
+            <li><svg class="ic"><use href="#ic-moon"/></svg><span><strong>Viernes y sábados</strong> todo el año</span></li>
+            <li><svg class="ic"><use href="#ic-sun"/></svg><span><strong>Vacaciones:</strong> todos los días</span></li>
+            <li><svg class="ic"><use href="#ic-clock"/></svg><span><strong>Salida:</strong> 9:00 p.m.</span></li>
+            <li><svg class="ic"><use href="#ic-family"/></svg><span><strong>Grupos:</strong> tú eliges fecha y hora</span></li>
+          </ul>
+          <a class="btn btn--gold btn--shine dispo-modal__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+        </div>
+      </div>
     </div>
 
     <a
@@ -1355,7 +1383,7 @@
         const LUGARES = {
           "palacio-municipal":      { titulo: "Palacio Municipal",                img: "image/mapa/palacio-municipal.jpg",      desc: "Sede del gobierno municipal, joya arquitectónica frente al Zócalo. (Texto editable.)" },
           "fuente-san-miguel":      { titulo: "Fuente de San Miguel",             img: "image/mapa/fuente-san-miguel.jpg",      desc: "Fuente emblemática del Zócalo, rodeada de arquitectura colonial. (Texto editable.)" },
-          "catedral":               { titulo: "Catedral de Puebla",               img: "image/mapa/catedral.jpg",               desc: "La Catedral Basílica de Nuestra Señora de la Inmaculada Concepción, símbolo de la ciudad. (Texto editable.)" },
+          "catedral":               { titulo: "Santa Basílica Catedral de Puebla", img: "image/mapa/catedral.jpg",              desc: "La Catedral Basílica de Nuestra Señora de la Inmaculada Concepción, símbolo de la ciudad. (Texto editable.)" },
           "pasaje-ayuntamiento":    { titulo: "Pasaje del Ayuntamiento",          img: "image/mapa/pasaje-ayuntamiento.jpg",    desc: "Pasaje histórico junto al Palacio Municipal. (Texto editable.)" },
           "santo-domingo":          { titulo: "Iglesia de Santo Domingo",         img: "image/mapa/santo-domingo.jpg",          desc: "Templo que alberga la Capilla del Rosario, joya del barroco. (Texto editable.)" },
           "mercado-victoria":       { titulo: "Mercado La Victoria",              img: "image/mapa/mercado-victoria.jpg",       desc: "Antiguo mercado tradicional de Puebla. (Texto editable.)" },
@@ -1367,7 +1395,7 @@
           "edificio-carolino":      { titulo: "Edificio Carolino",                img: "image/mapa/edificio-carolino.jpg",      desc: "Sede histórica de la Universidad, con bellos patios coloniales. (Texto editable.)" },
           "el-parian":              { titulo: "Mercado de Artesanías El Parián",  img: "image/mapa/el-parian.jpg",              desc: "El mercado de artesanías más tradicional de Puebla. (Texto editable.)" },
           "barrio-artista":         { titulo: "Barrio del Artista",               img: "image/mapa/barrio-artista.jpg",         desc: "Espacio bohemio donde pintores y artistas trabajan al aire libre. (Texto editable.)" },
-          "teatro-principal":       { titulo: "Teatro Principal",                 img: "image/mapa/teatro-principal.jpg",       desc: "Uno de los teatros más antiguos de América. (Texto editable.)" },
+          "teatro-principal":       { titulo: "Teatro Principal",                 img: "image/mapa/teatro-principal.jpg",       desc: "“Antiguo Coliseo”, el primer teatro en América." },
           "maqueta-fundacion":      { titulo: "Maqueta de la Fundación",          img: "image/mapa/maqueta-fundacion.jpg",      desc: "Maqueta que recrea la fundación de la ciudad. (Texto editable.)" },
           "explanada-compania":     { titulo: "Explanada de la Compañía",         img: "image/mapa/explanada-compania.jpg",     desc: "Explanada junto a la Iglesia de la Compañía. (Texto editable.)" },
           "casa-inquisicion":       { titulo: "Casa de la Inquisición",           img: "image/mapa/casa-inquisicion.jpg",       desc: "Antigua casa ligada a la historia de la Santa Inquisición. (Texto editable.)" },
@@ -1384,9 +1412,9 @@
               { lugar: "fuente-san-miguel",      num: 2,  x: 22.2, y: 47.5 },
               { lugar: "catedral",               num: 3,  x: 25.5, y: 56.0 },
               { lugar: "edificio-carolino",      num: 4,  x: 45.2, y: 73.8 },
-              { lugar: "el-parian",              num: 6,  x: 65.3, y: 59.2 },
-              { lugar: "barrio-artista",         num: 7,  x: 74.7, y: 44.7 },
-              { lugar: "teatro-principal",       num: 8,  x: 75.8, y: 32.7 },
+              { lugar: "el-parian",              num: 5,  x: 65.3, y: 59.2 },
+              { lugar: "barrio-artista",         num: 6,  x: 74.7, y: 44.7 },
+              { lugar: "teatro-principal",       num: 7,  x: 75.8, y: 32.7 },
             ],
             estacionamientos: [
               { x: 39.0, y: 49.0 }, { x: 36.3, y: 64.3 },
@@ -1404,8 +1432,8 @@
               { lugar: "mercado-victoria",       num: 6,  x: 31.3, y: 11.0 },
               { lugar: "calle-dulces",           num: 7,  x: 37.2, y: 13.7 },
               { lugar: "fabrica-talavera",       num: 8,  x: 41.7, y: 16.0 },
-              { lugar: "exconvento-santa-clara", num: 9,  x: 48.7, y: 20.3 },
-              { lugar: "casa-hermanos-serdan",   num: 10, x: 52.4, y: 27.0 },
+              { lugar: "exconvento-santa-clara", num: 10, x: 48.7, y: 20.3 },
+              { lugar: "casa-hermanos-serdan",   num: 9,  x: 52.4, y: 27.0 },
               { lugar: "casa-munecos",           num: 11, x: 35.2, y: 45.9 },
             ],
             estacionamientos: [
@@ -1418,10 +1446,10 @@
               { lugar: "palacio-municipal",      num: 1,  x: 30.6, y: 43.2, inicio: true },
               { lugar: "fuente-san-miguel",      num: 2,  x: 22.2, y: 47.5 },
               { lugar: "maqueta-fundacion",      num: 3,  x: 28.8, y: 50.3 },
-              { lugar: "explanada-compania",     num: 4,  x: 41.8, y: 61.1 },
-              { lugar: "casa-inquisicion",       num: 5,  x: 38.9, y: 70.2 },
+              { lugar: "explanada-compania",     num: 5,  x: 41.8, y: 61.1 },
+              { lugar: "casa-inquisicion",       num: 6,  x: 38.9, y: 70.2 },
               { lugar: "alrededores-carolino",   num: 7,  x: 48.1, y: 76.7 },
-              { lugar: "iglesia-compania",       num: 9,  x: 46.6, y: 61.5 },
+              { lugar: "iglesia-compania",       num: 4,  x: 46.6, y: 61.5 },
             ],
             estacionamientos: [
               { x: 38.9, y: 49.7 }, { x: 36.6, y: 64.1 },
@@ -1520,6 +1548,29 @@
         }
         resetView();
       }
+    </script>
+    <script>
+      // Popup de disponibilidad (botón del hero)
+      (function () {
+        const btn = document.getElementById("dispoBtn");
+        const modal = document.getElementById("dispoModal");
+        if (!btn || !modal) return;
+        function open() {
+          modal.hidden = false;
+          document.body.style.overflow = "hidden";
+          modal.querySelector(".mapa-modal__close").focus();
+        }
+        function close() {
+          modal.hidden = true;
+          document.body.style.overflow = "";
+          btn.focus();
+        }
+        btn.addEventListener("click", open);
+        modal.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", close));
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && !modal.hidden) close();
+        });
+      })();
     </script>
   </body>
 </html>
