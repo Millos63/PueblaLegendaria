@@ -141,7 +141,7 @@
           <p class="hero__subtitle">Donde las leyendas cobran vida</p>
           <div class="hero__actions">
             <a class="btn btn--gold" href="#recorridos">Explorar Recorridos</a>
-            <a class="btn btn--outline" href="#nosotros">▶ Ver Trailer</a>
+            <button type="button" class="btn btn--outline" id="dispoBtn" aria-haspopup="dialog" aria-controls="dispoModal"><svg class="ic ic--inline"><use href="#ic-calendar"/></svg> Disponibilidad</button>
           </div>
         </div>
 
@@ -650,7 +650,8 @@
               <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-phone"/></svg><a href="tel:+522222650024">+52 222 265 0024</a></p>
               <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-mail"/></svg><a href="mailto:pueblalegendaria@hotmail.com">pueblalegendaria@hotmail.com</a></p>
               <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-chat"/></svg><a href="https://wa.me/522222650024" target="_blank" rel="noopener">WhatsApp directo</a></p>
-              <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-clock"/></svg>Siempre abiertos por reservación</p>
+              <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-clock"/></svg>Viernes y sábados todo el año · En vacaciones todos los días · 9:00 p.m.</p>
+              <p class="contact-info__item"><svg class="ic ic--inline"><use href="#ic-calendar"/></svg>Grupos: tú eliges fecha y hora</p>
 
               <iframe
                 title="Mapa Puebla Legendaria"
@@ -740,6 +741,23 @@
           <a class="btn btn--gold btn--shine tour-modal__cta" id="tourModalCta" href="#contacto">Pedir más información</a>
         </div>
       </article>
+    </div>
+
+    <div class="mapa-modal dispo-modal" id="dispoModal" hidden>
+      <div class="mapa-modal__backdrop" data-close></div>
+      <div class="mapa-modal__card dispo-modal__card" role="dialog" aria-modal="true" aria-labelledby="dispoModalTitle">
+        <button class="mapa-modal__close" data-close aria-label="Cerrar">✕</button>
+        <div class="mapa-modal__body">
+          <h3 class="mapa-modal__title" id="dispoModalTitle">¿Cuándo salimos?</h3>
+          <ul class="dispo-modal__list">
+            <li><svg class="ic"><use href="#ic-moon"/></svg><span><strong>Viernes y sábados</strong> todo el año</span></li>
+            <li><svg class="ic"><use href="#ic-sun"/></svg><span><strong>Vacaciones:</strong> todos los días</span></li>
+            <li><svg class="ic"><use href="#ic-clock"/></svg><span><strong>Salida:</strong> 9:00 p.m.</span></li>
+            <li><svg class="ic"><use href="#ic-family"/></svg><span><strong>Grupos:</strong> tú eliges fecha y hora</span></li>
+          </ul>
+          <a class="btn btn--gold btn--shine dispo-modal__cta" href="https://wa.me/522222650024" target="_blank" rel="noopener">Reservar por WhatsApp</a>
+        </div>
+      </div>
     </div>
 
     <a
@@ -1346,6 +1364,30 @@
           window.location.reload();
         }
       });
+    </script>
+
+    <script>
+      // Popup de disponibilidad (botón del hero)
+      (function () {
+        const btn = document.getElementById("dispoBtn");
+        const modal = document.getElementById("dispoModal");
+        if (!btn || !modal) return;
+        function open() {
+          modal.hidden = false;
+          document.body.style.overflow = "hidden";
+          modal.querySelector(".mapa-modal__close").focus();
+        }
+        function close() {
+          modal.hidden = true;
+          document.body.style.overflow = "";
+          btn.focus();
+        }
+        btn.addEventListener("click", open);
+        modal.querySelectorAll("[data-close]").forEach((el) => el.addEventListener("click", close));
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && !modal.hidden) close();
+        });
+      })();
     </script>
   </body>
 </html>
